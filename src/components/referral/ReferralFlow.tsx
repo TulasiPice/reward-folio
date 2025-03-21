@@ -1,10 +1,11 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Share } from "lucide-react";
+import { Share, Gift } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 type Product = {
   id: number;
@@ -60,6 +61,12 @@ export function ReferralFlow({
   onShare: (target: string) => void;
   onBack: () => void;
 }) {
+  const navigate = useNavigate();
+  
+  const handleRedeemClick = () => {
+    navigate('/rewards');
+  };
+
   return (
     <div className="space-y-4 py-2">
       {product && (
@@ -73,7 +80,17 @@ export function ReferralFlow({
 
       {/* How It Works Section */}
       <div className="space-y-2">
-        <h3 className="font-semibold text-base">How It Works</h3>
+        <div className="flex justify-between items-center">
+          <h3 className="font-semibold text-base">How It Works</h3>
+          <Button 
+            onClick={handleRedeemClick} 
+            size="sm" 
+            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600"
+          >
+            <Gift className="h-4 w-4 mr-1" />
+            Redeem Points
+          </Button>
+        </div>
         <ul className="space-y-2 pl-5 list-disc text-sm text-muted-foreground">
           <li>Tap 'Invite' next to a friend to send your referral link</li>
           <li>You earn coins + cash when they sign up 🎉</li>
