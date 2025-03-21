@@ -41,12 +41,12 @@ export function TopProducts({ onSelectProduct }: { onSelectProduct?: (product: a
               key={product.id} 
               className="p-3 rounded-lg border border-border hover:bg-accent/5 transition-colors"
             >
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between">
                 <div>
                   <h3 className="font-medium">{product.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1">{product.description}</p>
                 </div>
-                <span className="text-xs whitespace-nowrap font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full">
+                <span className="text-xs whitespace-nowrap font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full self-start mt-0.5">
                   {product.reward}
                 </span>
               </div>
