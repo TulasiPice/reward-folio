@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Share } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/shared/UserAvatar";
+import { Card } from "@/components/ui/card";
 
 type Product = {
   id: number;
@@ -62,12 +63,12 @@ export function ReferralFlow({
   return (
     <div className="space-y-4 py-2">
       {product && (
-        <div className="bg-accent/10 p-4 rounded-lg mb-2">
+        <Card className="bg-accent/10 p-4 mb-4">
           <h3 className="font-medium text-foreground">Sharing: {product.name}</h3>
           <p className="text-xs text-muted-foreground mt-1">
             When someone uses your link, you'll earn {product.reward}!
           </p>
-        </div>
+        </Card>
       )}
 
       {/* How It Works Section */}
@@ -95,7 +96,10 @@ export function ReferralFlow({
                   name={contact.name} 
                   size="sm"
                 />
-                <span className="font-medium text-sm">{contact.name}</span>
+                <div>
+                  <span className="font-medium text-sm">{contact.name}</span>
+                  <p className="text-xs text-muted-foreground">{contact.phone}</p>
+                </div>
               </div>
               <Button
                 size="sm"

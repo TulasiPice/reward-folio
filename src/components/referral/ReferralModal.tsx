@@ -21,6 +21,12 @@ export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModal
     }
   }, [initialProduct]);
 
+  const handleShare = (target: string) => {
+    console.log(`Sharing referral to: ${target}`);
+    // Here you would implement the actual sharing logic
+    // This could open native share APIs or generate specific links
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none">
@@ -34,8 +40,12 @@ export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModal
           </div>
 
           {/* Content section */}
-          <div className="flex-1 overflow-auto">
-            <ReferralFlow product={selectedProduct} onBack={() => {}} onShare={() => {}} />
+          <div className="flex-1 overflow-auto p-6">
+            <ReferralFlow 
+              product={selectedProduct} 
+              onBack={() => setSelectedProduct(null)} 
+              onShare={handleShare} 
+            />
           </div>
         </div>
       </DialogContent>
