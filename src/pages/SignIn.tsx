@@ -19,11 +19,11 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-white">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-3xl font-bold tracking-tight text-textPrimary">Welcome back</h1>
+          <p className="text-textSecondary">
             Sign in to continue to your rewards
           </p>
         </div>
@@ -48,14 +48,14 @@ const SignIn = () => {
           </Button>
 
           <div className="relative flex items-center py-2">
-            <div className="flex-grow border-t border-gray-200"></div>
-            <span className="flex-shrink mx-3 text-gray-400 text-sm">or</span>
-            <div className="flex-grow border-t border-gray-200"></div>
+            <div className="flex-grow border-t border-border"></div>
+            <span className="flex-shrink mx-3 text-textSecondary text-sm">or</span>
+            <div className="flex-grow border-t border-border"></div>
           </div>
 
           <div className="space-y-4">
             <div className="space-y-2">
-              <h2 className="text-xl font-medium">Sign in with email</h2>
+              <h2 className="text-xl font-medium text-textPrimary">Sign in with email</h2>
             </div>
             <Input 
               type="email" 
@@ -65,14 +65,14 @@ const SignIn = () => {
             />
             <Button 
               onClick={handleEmailSignIn}
-              className="w-full h-12 bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-500 hover:to-orange-600"
+              className="w-full h-12 btn-gradient"
             >
               Continue
             </Button>
           </div>
         </div>
 
-        <div className="text-center text-sm text-muted-foreground">
+        <div className="text-center text-sm text-textSecondary">
           Don't have an account?{" "}
           <Link to="/sign-up" className="font-medium text-primary hover:underline">
             Sign up
