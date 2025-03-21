@@ -44,8 +44,8 @@ export default function History() {
     : null;
 
   return (
-    <div className="container max-w-md mx-auto pb-20 pt-4">
-      <div className="mb-4">
+    <div className="space-y-6">
+      <div className="flex items-center mb-6">
         <Link to="/" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted">
           <ArrowLeft className="h-4 w-4" />
         </Link>
