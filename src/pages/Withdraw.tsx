@@ -2,7 +2,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { ArrowLeft, ArrowUp, Calendar, Clock, CreditCard, IndianRupee, Info, Timer } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Clock, CreditCard, Info, Timer } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -155,8 +155,12 @@ const Withdraw = () => {
       >
         <TabsList className="grid grid-cols-3 mb-6">
           <TabsTrigger value="standard">Standard</TabsTrigger>
-          <TabsTrigger value="upi" className="flex items-center gap-1">
-            <IndianRupee className="h-3.5 w-3.5" />
+          <TabsTrigger value="upi" className="flex items-center gap-2">
+            <img 
+              src="/lovable-uploads/598db391-65b3-4fd6-9167-0694b3f6b7da.png" 
+              alt="UPI" 
+              className="h-4 w-4 inline-block" 
+            />
             UPI
           </TabsTrigger>
           <TabsTrigger value="bank" className="flex items-center gap-1">
