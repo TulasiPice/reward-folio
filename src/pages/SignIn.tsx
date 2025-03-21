@@ -30,7 +30,7 @@ const SignIn = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-amber-100 to-amber-50 rounded-full opacity-50 animate-pulse" />
             <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
               <img 
-                src="/lovable-uploads/5ead2c8c-290c-4c36-8a7b-1162d821988b.png" 
+                src="/lovable-uploads/846a4da7-761f-4566-94dc-f2a5c3b1f3d2.png" 
                 alt="Earn rewards" 
                 className="w-full h-full object-contain"
               />
