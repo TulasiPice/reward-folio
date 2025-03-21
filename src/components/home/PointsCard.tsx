@@ -3,11 +3,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser } from "@/utils/mockData";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, Coins, Wallet } from "lucide-react";
 
 export function PointsCard() {
   return (
-    <Card className="w-full overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-blue-600 to-blue-500">
+    <Card className="w-full overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-emerald-600 to-emerald dark:from-emerald-700 dark:to-emerald">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
@@ -27,15 +27,35 @@ export function PointsCard() {
           </div>
         </div>
         
-        <div className="mt-8">
-          <p className="text-white/80 text-sm">Your balance</p>
-          <div className="flex items-baseline">
-            <AnimatedNumber 
-              value={currentUser.points} 
-              className="text-white text-3xl font-bold" 
-              duration={1500}
-            />
-            <span className="text-white/80 ml-2 text-sm">points</span>
+        <div className="grid grid-cols-2 gap-4 mt-8">
+          <div className="bg-white/10 rounded-lg p-3">
+            <div className="flex items-center gap-2 text-white/80 text-sm mb-1">
+              <Wallet size={16} />
+              <span>Cash Balance</span>
+            </div>
+            <div className="flex items-baseline">
+              <AnimatedNumber 
+                value={currentUser.points} 
+                className="text-white text-2xl font-bold" 
+                duration={1500}
+              />
+              <span className="text-white/80 ml-2 text-sm">points</span>
+            </div>
+          </div>
+          
+          <div className="bg-white/10 rounded-lg p-3">
+            <div className="flex items-center gap-2 text-white/80 text-sm mb-1">
+              <Coins size={16} />
+              <span>Coin Balance</span>
+            </div>
+            <div className="flex items-baseline">
+              <AnimatedNumber 
+                value={1250} 
+                className="text-white text-2xl font-bold" 
+                duration={1500}
+              />
+              <span className="text-white/80 ml-2 text-sm">coins</span>
+            </div>
           </div>
         </div>
         
