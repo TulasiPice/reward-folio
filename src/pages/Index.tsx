@@ -1,7 +1,6 @@
 
 import { PointsCard } from "@/components/home/PointsCard";
 import { RecentTransactions } from "@/components/home/RecentTransactions";
-import { TopProducts } from "@/components/home/TopProducts"; 
 import { WeeklyProgress } from "@/components/home/WeeklyProgress";
 import { Leaderboard } from "@/components/home/Leaderboard";
 import { Button } from "@/components/ui/button";
@@ -44,8 +43,7 @@ const Index = () => {
         </div>
       </div>
       
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <TopProducts onSelectProduct={(product) => openReferralModal(product)} />
+      <div className="grid gap-6 md:grid-cols-2">
         <WeeklyProgress />
         <Leaderboard />
       </div>
