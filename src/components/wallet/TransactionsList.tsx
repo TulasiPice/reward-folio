@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { Transaction } from "@/utils/mockData";
 import { formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { ArrowDown, ArrowUp, Gift } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface TransactionsListProps {
@@ -12,19 +11,6 @@ interface TransactionsListProps {
 }
 
 export function TransactionsList({ transactions }: TransactionsListProps) {
-  const getTransactionIcon = (type: string) => {
-    switch (type) {
-      case 'received':
-        return <ArrowDown size={16} className="text-emerald-600" />;
-      case 'sent':
-        return <ArrowUp size={16} className="text-blue-600" />;
-      case 'reward':
-        return <Gift size={16} className="text-amber-600" />;
-      default:
-        return null;
-    }
-  };
-  
   const getStatusBadge = (type: string) => {
     switch (type) {
       case 'received':
@@ -60,9 +46,6 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
           className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors animate-fade-in border border-muted"
         >
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-muted rounded-full">
-              {getTransactionIcon(transaction.type)}
-            </div>
             <div className="flex flex-col">
               <div className="flex items-center space-x-2">
                 <UserAvatar 
