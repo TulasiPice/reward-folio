@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ProductSelection } from "./ProductSelection";
 import { ReferralFlow } from "./ReferralFlow";
 import { useToast } from "@/hooks/use-toast";
 import { X } from "lucide-react";
@@ -13,6 +12,14 @@ type Product = {
   description: string;
 };
 
+// Default product that will be used since we're removing product selection
+const defaultProduct = {
+  id: 1,
+  name: "Premium Subscription",
+  reward: "500 points",
+  description: "Most popular option with highest rewards"
+};
+
 export function ReferralModal({ 
   isOpen, 
   onClose, 
@@ -22,15 +29,9 @@ export function ReferralModal({
   onClose: () => void;
   initialProduct?: Product | null;
 }) {
-  const [step, setStep] = useState(initialProduct ? "flow" : "product");
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(initialProduct);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(initialProduct || defaultProduct);
   const { toast } = useToast();
 
-  const handleProductSelect = (product: Product) => {
-    setSelectedProduct(product);
-    setStep("flow");
-  };
-  
   const handleShare = (target: string) => {
     // In a real app, this would handle the actual sharing logic
     toast({
@@ -40,10 +41,6 @@ export function ReferralModal({
     });
   };
 
-  const handleBack = () => {
-    setStep("product");
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none">
@@ -51,7 +48,7 @@ export function ReferralModal({
           {/* Header section */}
           <div className="bg-background border-b px-6 py-4 flex items-center justify-between">
             <DialogTitle className="text-xl font-semibold">
-              {step === "product" ? "Select a Product to Refer" : "Invite Friends & Earn Rewards"}
+              Invite Friends & Earn Rewards
             </DialogTitle>
             <button 
               className="rounded-full p-1 hover:bg-muted" 
@@ -64,15 +61,11 @@ export function ReferralModal({
 
           {/* Content section - taking full remaining height */}
           <div className="flex-1 overflow-auto p-6">
-            {step === "product" ? (
-              <ProductSelection onSelect={handleProductSelect} />
-            ) : (
-              <ReferralFlow 
-                product={selectedProduct} 
-                onShare={handleShare}
-                onBack={handleBack}
-              />
-            )}
+            <ReferralFlow 
+              product={selectedProduct} 
+              onShare={handleShare}
+              onBack={onClose} // Changed to directly close the modal since there's no "back" anymore
+            />
           </div>
         </div>
       </DialogContent>

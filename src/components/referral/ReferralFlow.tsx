@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Share } from "lucide-react";
+import { Share } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 
@@ -61,16 +61,6 @@ export function ReferralFlow({
 }) {
   return (
     <div className="space-y-4 py-2">
-      <Button 
-        variant="ghost" 
-        size="sm" 
-        onClick={onBack}
-        className="flex items-center text-muted-foreground hover:text-foreground mb-2 -ml-2"
-      >
-        <ArrowLeft className="mr-2 h-4 w-4" />
-        Back to products
-      </Button>
-
       {product && (
         <div className="bg-accent/10 p-4 rounded-lg mb-2">
           <h3 className="font-medium text-foreground">Sharing: {product.name}</h3>
