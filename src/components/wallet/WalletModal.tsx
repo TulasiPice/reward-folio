@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser, transactions } from "@/utils/mockData";
 import { formatPoints, formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { Wallet, Coins, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket } from "lucide-react";
+import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download, History } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { UserAvatar } from "@/components/shared/UserAvatar";
@@ -81,6 +81,11 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 </Button>
                 <h2 className="text-xl font-semibold">Your Wallet</h2>
               </div>
+              <Link to="/history" onClick={onClose}>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <History className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
           
@@ -264,10 +269,10 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
               </div>
               
               <div className="mt-auto">
-                <Link to="/rewards" onClick={onClose} className="w-full">
+                <Link to="/send" onClick={onClose} className="w-full">
                   <Button variant="outline" className="w-full">
-                    <Gift className="h-4 w-4 mr-2" />
-                    Redeem Points
+                    <SendHorizontal className="h-4 w-4 mr-2" />
+                    Send
                   </Button>
                 </Link>
               </div>
