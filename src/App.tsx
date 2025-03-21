@@ -6,11 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import Index from "./pages/Index";
-import Send from "./pages/Send";
-import Receive from "./pages/Receive";
-import Withdraw from "./pages/Withdraw";
 import Rewards from "./pages/Rewards";
-import History from "./pages/History";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
@@ -27,11 +23,7 @@ const App = () => (
           <Route path="/sign-in" element={<SignIn />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<Index />} />
-            <Route path="/send" element={<Send />} />
-            <Route path="/receive" element={<Receive />} />
-            <Route path="/withdraw" element={<Withdraw />} />
             <Route path="/rewards" element={<Rewards />} />
-            <Route path="/history" element={<History />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
           <Route path="*" element={<NotFound />} />
