@@ -5,7 +5,12 @@ import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
 
 const SignIn = () => {
+  const [showOnboarding, setShowOnboarding] = useState(true);
   const [email, setEmail] = useState("");
+
+  const handleStartEarning = () => {
+    setShowOnboarding(false);
+  };
 
   const handleGoogleSignIn = () => {
     console.log("Sign in with Google");
@@ -16,6 +21,41 @@ const SignIn = () => {
     console.log("Sign in with email", email);
     // Handle email signin logic
   };
+
+  if (showOnboarding) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-amber-50 to-amber-100">
+        <div className="w-full max-w-md px-4 py-8 flex flex-col items-center">
+          <div className="relative w-64 h-64 mb-4">
+            <div className="absolute inset-0 bg-gradient-to-b from-amber-100 to-amber-50 rounded-full opacity-50 animate-pulse" />
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/5ead2c8c-290c-4c36-8a7b-1162d821988b.png" 
+                alt="Earn rewards" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+          
+          <h1 className="text-2xl md:text-3xl font-bold text-center mb-3">
+            Earn cash & rewards just by sharing – start in seconds!
+          </h1>
+          
+          <p className="text-textSecondary text-center mb-8">
+            Refer friends, earn rewards, and cash out whenever you want.
+          </p>
+          
+          <Button 
+            onClick={handleStartEarning}
+            className="w-full h-12 btn-gradient text-lg"
+          >
+            Start Earning Rewards
+            <ArrowRight className="ml-2" />
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
