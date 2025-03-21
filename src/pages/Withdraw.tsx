@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -101,7 +100,7 @@ export default function Withdraw() {
           <div className="space-y-2">
             <Label htmlFor="amount">Amount</Label>
             <div className="relative">
-              <span className="absolute left-3 top-2 text-2xl text-foreground">₹</span>
+              <span className="absolute left-3 top-3 text-lg text-foreground">₹</span>
               <Input
                 id="amount"
                 type="number"
