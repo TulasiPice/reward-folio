@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -9,6 +10,7 @@ import { formatPoints } from "@/utils/formatters";
 import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { UserAvatar } from "@/components/shared/UserAvatar";
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -37,18 +39,20 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     {
       id: 'v1',
       title: 'Zomato',
+      logo: "/lovable-uploads/04b7efc9-a010-4d7e-a4c2-d56be353a63d.png",
       value: '₹15',
       expiryDate: '2023-12-31',
       isNew: true,
-      color: 'bg-amber-100'
+      color: 'bg-red-50'
     },
     {
       id: 'v2',
       title: 'Swiggy',
+      logo: "/lovable-uploads/5849cf2d-e0a1-4fd2-b223-6ae840102e72.png",
       value: '₹25',
       expiryDate: '2023-11-30',
       isNew: false,
-      color: 'bg-emerald-100'
+      color: 'bg-orange-50'
     },
     {
       id: 'v3',
@@ -144,9 +148,20 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   {vouchers.map((voucher) => (
                     <Card key={voucher.id} className={`${voucher.color} border-none shadow-sm overflow-hidden`}>
                       <CardContent className="p-4 flex justify-between items-center">
-                        <div>
-                          <h4 className="font-medium">{voucher.title}</h4>
-                          <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                        <div className="flex items-center gap-3">
+                          {voucher.logo ? (
+                            <div className="h-10 w-10 rounded-md overflow-hidden flex-shrink-0">
+                              <img 
+                                src={voucher.logo} 
+                                alt={voucher.title} 
+                                className="h-full w-full object-contain"
+                              />
+                            </div>
+                          ) : null}
+                          <div>
+                            <h4 className="font-medium">{voucher.title}</h4>
+                            <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                          </div>
                         </div>
                         <div className="text-right">
                           <span className="font-bold text-lg">{voucher.value}</span>
@@ -207,9 +222,20 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   {vouchers.map((voucher) => (
                     <Card key={voucher.id} className={`${voucher.color} border-none shadow-sm overflow-hidden`}>
                       <CardContent className="p-4 flex justify-between items-center">
-                        <div>
-                          <h4 className="font-medium">{voucher.title}</h4>
-                          <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                        <div className="flex items-center gap-3">
+                          {voucher.logo ? (
+                            <div className="h-10 w-10 rounded-md overflow-hidden flex-shrink-0">
+                              <img 
+                                src={voucher.logo} 
+                                alt={voucher.title} 
+                                className="h-full w-full object-contain"
+                              />
+                            </div>
+                          ) : null}
+                          <div>
+                            <h4 className="font-medium">{voucher.title}</h4>
+                            <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                          </div>
                         </div>
                         <div className="text-right">
                           <span className="font-bold text-lg">{voucher.value}</span>
