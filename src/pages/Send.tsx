@@ -6,9 +6,10 @@ import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "@/components/ui/use-toast";
 import { UserAvatar } from "@/components/shared/UserAvatar";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 export default function Send() {
   const [amount, setAmount] = useState("");
@@ -85,20 +86,51 @@ export default function Send() {
           
           <div className="space-y-2">
             <Label>Contacts</Label>
-            <ScrollArea className="h-32 w-full rounded-md border">
-              <div className="p-4 space-y-2">
-                {recentContacts.map((contact) => (
-                  <Button 
-                    key={contact.id}
-                    variant="outline"
-                    className="flex items-center justify-start gap-2 w-full"
+            <ScrollArea className="h-56 w-full rounded-md border p-4">
+              <div className="grid grid-cols-2 gap-3">
+                {recentContacts.slice(0, 6).map((contact) => (
+                  <Card 
+                    key={contact.id} 
+                    className="overflow-hidden cursor-pointer hover:bg-accent/10 transition-colors"
                     onClick={() => setRecipient(contact.name)}
                   >
-                    <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
-                    <span>{contact.name}</span>
-                  </Button>
+                    <CardContent className="p-3 flex items-center gap-2">
+                      <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
+                      <span className="text-sm font-medium truncate">{contact.name}</span>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
+              
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full mt-3 flex items-center gap-2 text-muted-foreground"
+                  >
+                    <Users size={16} />
+                    <span>View All Contacts</span>
+                  </Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="space-y-2">
+                    <h4 className="text-sm font-semibold">All Contacts</h4>
+                    <div className="grid grid-cols-1 gap-2">
+                      {recentContacts.map((contact) => (
+                        <Button 
+                          key={contact.id}
+                          variant="ghost"
+                          className="flex items-center justify-start gap-2 w-full h-auto py-2"
+                          onClick={() => setRecipient(contact.name)}
+                        >
+                          <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
+                          <span>{contact.name}</span>
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
             </ScrollArea>
           </div>
         </CardContent>
