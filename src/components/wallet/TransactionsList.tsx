@@ -43,7 +43,7 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
           <Link 
             to={`/history?id=${transaction.id}`} 
             key={transaction.id} 
-            className="flex items-center justify-between p-3 hover:bg-muted/50 transition-colors animate-fade-in"
+            className="flex items-center justify-between p-3 px-2 hover:bg-muted/50 transition-colors animate-fade-in"
           >
             <div className="flex items-center space-x-3">
               <div className="flex flex-col">
