@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUp, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -53,6 +53,8 @@ const Withdraw = () => {
           <WithdrawForm 
             isSubmitting={isSubmitting}
             onSubmit={handleSubmit}
+            paymentMethod={paymentMethod}
+            setPaymentMethod={setPaymentMethod}
           />
         </CardContent>
       </Card>

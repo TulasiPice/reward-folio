@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CardFooter } from "@/components/ui/card";
 import { UpiForm } from "./UpiForm";
@@ -11,11 +11,16 @@ import { AmountInput } from "./AmountInput";
 interface WithdrawFormProps {
   isSubmitting: boolean;
   onSubmit: () => void;
+  paymentMethod: string;
+  setPaymentMethod: (method: string) => void;
 }
 
-export const WithdrawForm = ({ isSubmitting, onSubmit }: WithdrawFormProps) => {
-  const [paymentMethod, setPaymentMethod] = useState("upi");
-
+export const WithdrawForm = ({ 
+  isSubmitting, 
+  onSubmit, 
+  paymentMethod,
+  setPaymentMethod 
+}: WithdrawFormProps) => {
   return (
     <>
       <div className="space-y-6">
