@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
@@ -125,16 +124,28 @@ export default function History() {
               onValueChange={(value) => value && setFilter(value)}
               className="w-full justify-start gap-2"
             >
-              <ToggleGroupItem value="all" className="rounded-full px-4 py-1.5 text-sm">
+              <ToggleGroupItem 
+                value="all" 
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+              >
                 All
               </ToggleGroupItem>
-              <ToggleGroupItem value="sent" className="rounded-full px-4 py-1.5 text-sm bg-blue-100 text-blue-800 dark:bg-blue-950/30 dark:text-blue-400 data-[state=on]:bg-blue-200 dark:data-[state=on]:bg-blue-800/40">
+              <ToggleGroupItem 
+                value="sent" 
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+              >
                 Sent
               </ToggleGroupItem>
-              <ToggleGroupItem value="received" className="rounded-full px-4 py-1.5 text-sm bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 data-[state=on]:bg-emerald-200 dark:data-[state=on]:bg-emerald-800/40">
+              <ToggleGroupItem 
+                value="received" 
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+              >
                 Received
               </ToggleGroupItem>
-              <ToggleGroupItem value="reward" className="rounded-full px-4 py-1.5 text-sm bg-amber-100 text-amber-800 dark:bg-amber-950/30 dark:text-amber-400 data-[state=on]:bg-amber-200 dark:data-[state=on]:bg-amber-800/40">
+              <ToggleGroupItem 
+                value="reward" 
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+              >
                 Reward
               </ToggleGroupItem>
             </ToggleGroup>
