@@ -42,6 +42,7 @@ export function PointsCard() {
                 <span>Cash Balance</span>
               </div>
               <div className="flex items-baseline">
+                <span className="text-white text-2xl font-bold mr-1">₹</span>
                 <AnimatedNumber 
                   value={currentUser.points} 
                   className="text-white text-2xl font-bold" 

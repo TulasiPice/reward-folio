@@ -104,7 +104,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 <div className="text-3xl font-bold">
                   <AnimatedNumber 
                     value={cashData.total} 
-                    prefix={<img src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" alt="Wallet" className="inline-block h-8 w-8 mr-1" />}
+                    prefix="₹ "
                     duration={1500}
                   />
                 </div>
@@ -115,7 +115,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   <CardContent className="p-3 text-center">
                     <ArrowDown className="h-4 w-4 text-emerald-500 mx-auto mb-1" />
                     <p className="text-xs text-muted-foreground">Earned</p>
-                    <p className="font-semibold">{formatPoints(cashData.earned)}</p>
+                    <p className="font-semibold">₹ {formatPoints(cashData.earned)}</p>
                   </CardContent>
                 </Card>
                 
@@ -123,7 +123,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   <CardContent className="p-3 text-center">
                     <ArrowUp className="h-4 w-4 text-blue-500 mx-auto mb-1" />
                     <p className="text-xs text-muted-foreground">Spent</p>
-                    <p className="font-semibold">{formatPoints(cashData.spent)}</p>
+                    <p className="font-semibold">₹ {formatPoints(cashData.spent)}</p>
                   </CardContent>
                 </Card>
                 
@@ -131,7 +131,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   <CardContent className="p-3 text-center">
                     <Gift className="h-4 w-4 text-amber-500 mx-auto mb-1" />
                     <p className="text-xs text-muted-foreground">Bonus</p>
-                    <p className="font-semibold">{formatPoints(cashData.bonus)}</p>
+                    <p className="font-semibold">₹ {formatPoints(cashData.bonus)}</p>
                   </CardContent>
                 </Card>
               </div>
