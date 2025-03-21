@@ -3,7 +3,7 @@ import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { ArrowLeft, ArrowUp, Calendar, Check, Clock, CreditCard, Info, Timer } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Check, Clock, CreditCard, Info, Timer, Wallet, User, Building, BankIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -114,22 +114,22 @@ const Withdraw = () => {
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Withdraw Cash</h1>
           <p className="text-muted-foreground">
-            Convert your cash to rewards or bank transfer.
+            <Wallet className="inline mr-1 h-4 w-4" /> Convert your cash to rewards or bank transfer.
           </p>
         </div>
       </div>
       
       <Card>
         <CardHeader>
-          <CardTitle>Withdraw Your Cash</CardTitle>
+          <CardTitle><ArrowUp className="inline mr-2 h-5 w-5" /> Withdraw Your Cash</CardTitle>
           <CardDescription>
-            You can withdraw your cash to various payment methods.
+            <Info className="inline mr-1 h-4 w-4" /> You can withdraw your cash to various payment methods.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Prominent Amount Section */}
           <div className="bg-muted/40 rounded-lg p-6 border">
-            <h3 className="text-lg font-medium mb-4">Amount to withdraw</h3>
+            <h3 className="text-lg font-medium mb-4"><Wallet className="inline mr-2 h-5 w-5" /> Amount to withdraw</h3>
             <div className="relative w-full max-w-md mx-auto mb-2">
               <Input 
                 placeholder="0" 
@@ -154,13 +154,13 @@ const Withdraw = () => {
               </div>
             </div>
             <p className="text-sm text-center text-muted-foreground">
-              Your available balance: ₹3,240
+              <Wallet className="inline mr-1 h-4 w-4" /> Your available balance: ₹3,240
             </p>
           </div>
 
           {/* Payment Method Selection */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium">Select payment method</h3>
+            <h3 className="text-lg font-medium"><CreditCard className="inline mr-2 h-5 w-5" /> Select payment method</h3>
             <RadioGroup
               defaultValue="upi"
               value={paymentMethod}
@@ -216,7 +216,11 @@ const Withdraw = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="flex items-center gap-2">
-                          <FormLabel>UPI ID</FormLabel>
+                          <FormLabel><img 
+                            src="/lovable-uploads/598db391-65b3-4fd6-9167-0694b3f6b7da.png" 
+                            alt="UPI" 
+                            className="inline h-4 w-4 mr-1" 
+                          /> UPI ID</FormLabel>
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -250,7 +254,7 @@ const Withdraw = () => {
                           <Clock className="h-3.5 w-3.5" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium">Processing</p>
+                          <p className="text-sm font-medium"><Clock className="inline mr-1 h-3.5 w-3.5" /> Processing</p>
                           <p className="text-xs text-muted-foreground">Verified within 24 hours</p>
                         </div>
                       </div>
@@ -259,7 +263,7 @@ const Withdraw = () => {
                           <Calendar className="h-3.5 w-3.5" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium">Transfer</p>
+                          <p className="text-sm font-medium"><Calendar className="inline mr-1 h-3.5 w-3.5" /> Transfer</p>
                           <p className="text-xs text-muted-foreground">Typically 1-2 business days</p>
                         </div>
                       </div>
@@ -277,7 +281,7 @@ const Withdraw = () => {
                     name="accountHolder"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Account Holder Name</FormLabel>
+                        <FormLabel><User className="inline mr-1 h-4 w-4" /> Account Holder Name</FormLabel>
                         <FormControl>
                           <Input placeholder="Full name on your bank account" {...field} />
                         </FormControl>
@@ -292,7 +296,7 @@ const Withdraw = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="flex items-center gap-2">
-                          <FormLabel>Account Number</FormLabel>
+                          <FormLabel><CreditCard className="inline mr-1 h-4 w-4" /> Account Number</FormLabel>
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -318,7 +322,7 @@ const Withdraw = () => {
                     render={({ field }) => (
                       <FormItem>
                         <div className="flex items-center gap-2">
-                          <FormLabel>IFSC Code</FormLabel>
+                          <FormLabel><Building className="inline mr-1 h-4 w-4" /> IFSC Code</FormLabel>
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -349,7 +353,7 @@ const Withdraw = () => {
                           <Clock className="h-3.5 w-3.5" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium">Verification</p>
+                          <p className="text-sm font-medium"><Clock className="inline mr-1 h-3.5 w-3.5" /> Verification</p>
                           <p className="text-xs text-muted-foreground">Bank details verified within 24 hours</p>
                         </div>
                       </div>
@@ -358,7 +362,7 @@ const Withdraw = () => {
                           <Calendar className="h-3.5 w-3.5" />
                         </div>
                         <div>
-                          <p className="text-sm font-medium">Bank Processing</p>
+                          <p className="text-sm font-medium"><Calendar className="inline mr-1 h-3.5 w-3.5" /> Bank Processing</p>
                           <p className="text-xs text-muted-foreground">2-3 business days for NEFT/IMPS transfers</p>
                         </div>
                       </div>
@@ -385,7 +389,7 @@ const Withdraw = () => {
             )}
           </Button>
           
-          <div className="text-sm font-medium w-full pt-2">Withdrawal policy</div>
+          <div className="text-sm font-medium w-full pt-2"><Info className="inline mr-1 h-4 w-4" /> Withdrawal policy</div>
           <p className="text-sm text-muted-foreground">
             {paymentMethod === "upi" && "Minimum withdrawal amount is ₹100. UPI withdrawals are usually processed faster than other methods."}
             {paymentMethod === "bank" && "Minimum withdrawal amount is ₹500. Bank transfers may take 2-3 business days to process."}
