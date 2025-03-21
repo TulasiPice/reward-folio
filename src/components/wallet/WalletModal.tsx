@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser } from "@/utils/mockData";
 import { formatPoints } from "@/utils/formatters";
-import { Wallet, Coins, SendHorizontal, Tag, ArrowUp, ArrowDown, Gift, ArrowLeft } from "lucide-react";
+import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -33,6 +33,33 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     spent: 300,
     bonus: 600
   };
+
+  const vouchers = [
+    {
+      id: 'v1',
+      title: 'Coffee Break',
+      value: '$15',
+      expiryDate: '2023-12-31',
+      isNew: true,
+      color: 'bg-amber-100'
+    },
+    {
+      id: 'v2',
+      title: 'Lunch Voucher',
+      value: '$25',
+      expiryDate: '2023-11-30',
+      isNew: false,
+      color: 'bg-emerald-100'
+    },
+    {
+      id: 'v3',
+      title: 'Movie Tickets',
+      value: 'Two tickets',
+      expiryDate: '2023-10-15',
+      isNew: false,
+      color: 'bg-blue-100'
+    }
+  ];
   
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -108,18 +135,37 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   </CardContent>
                 </Card>
               </div>
+
+              <div className="mt-6">
+                <h3 className="font-medium mb-3 flex items-center gap-2">
+                  <Ticket className="h-4 w-4" />
+                  Your Vouchers
+                </h3>
+                <div className="space-y-3">
+                  {vouchers.map((voucher) => (
+                    <Card key={voucher.id} className={`${voucher.color} border-none shadow-sm overflow-hidden`}>
+                      <CardContent className="p-4 flex justify-between items-center">
+                        <div>
+                          <h4 className="font-medium">{voucher.title}</h4>
+                          <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                        </div>
+                        <div className="text-right">
+                          <span className="font-bold text-lg">{voucher.value}</span>
+                          {voucher.isNew && (
+                            <span className="block text-xs bg-primary text-white rounded-full px-2 py-0.5 mt-1">New</span>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
               
-              <div className="grid grid-cols-2 gap-3 mt-auto">
+              <div className="mt-auto">
                 <Link to="/send" onClick={onClose} className="w-full">
                   <Button variant="outline" className="w-full">
                     <SendHorizontal className="h-4 w-4 mr-2" />
                     Send
-                  </Button>
-                </Link>
-                <Link to="/rewards" onClick={onClose} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    <Tag className="h-4 w-4 mr-2" />
-                    Redeem
                   </Button>
                 </Link>
               </div>
@@ -161,18 +207,37 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   </CardContent>
                 </Card>
               </div>
+
+              <div className="mt-6">
+                <h3 className="font-medium mb-3 flex items-center gap-2">
+                  <Ticket className="h-4 w-4" />
+                  Your Vouchers
+                </h3>
+                <div className="space-y-3">
+                  {vouchers.map((voucher) => (
+                    <Card key={voucher.id} className={`${voucher.color} border-none shadow-sm overflow-hidden`}>
+                      <CardContent className="p-4 flex justify-between items-center">
+                        <div>
+                          <h4 className="font-medium">{voucher.title}</h4>
+                          <p className="text-sm text-muted-foreground">Expires: {voucher.expiryDate}</p>
+                        </div>
+                        <div className="text-right">
+                          <span className="font-bold text-lg">{voucher.value}</span>
+                          {voucher.isNew && (
+                            <span className="block text-xs bg-primary text-white rounded-full px-2 py-0.5 mt-1">New</span>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
               
-              <div className="grid grid-cols-2 gap-3 mt-auto">
+              <div className="mt-auto">
                 <Link to="/send" onClick={onClose} className="w-full">
                   <Button variant="outline" className="w-full">
                     <SendHorizontal className="h-4 w-4 mr-2" />
                     Send
-                  </Button>
-                </Link>
-                <Link to="/rewards" onClick={onClose} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    <Tag className="h-4 w-4 mr-2" />
-                    Redeem
                   </Button>
                 </Link>
               </div>
