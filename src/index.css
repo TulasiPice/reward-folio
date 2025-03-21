@@ -25,8 +25,8 @@
     --muted: 220 13% 91%; /* #E5E7EB - light gray */
     --muted-foreground: 240 5% 42%; /* Muted text */
 
-    /* Accent color - Lemon Yellow */
-    --accent: 48 100% 68%; /* #FFE15D */
+    /* Accent color - Changed to match CRED yellow in the reference image */
+    --accent: 54 100% 65%; /* Golden yellow */
     --accent-foreground: 240 5% 10%; /* Dark text */
 
     /* Destructive/Error color */
@@ -71,8 +71,8 @@
     --muted: 0 0% 16%; /* #2A2A2A */
     --muted-foreground: 0 0% 63%; /* #A1A1AA */
 
-    /* Accent color - Lemon Yellow */
-    --accent: 48 100% 68%; /* #FFE15D */
+    /* Accent color - Changed to match CRED yellow in the reference image */
+    --accent: 54 100% 65%; /* Golden yellow */
     --accent-foreground: 0 0% 12%; /* #1F1F1F */
 
     /* Destructive/Error color */
