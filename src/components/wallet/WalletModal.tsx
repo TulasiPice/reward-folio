@@ -280,11 +280,11 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
               <div className="mt-auto grid grid-cols-2 gap-4">
                 <Button 
                   variant="outline" 
-                  className="w-full text-orange-500 border-orange-500 hover:bg-orange-50 hover:text-orange-600"
+                  className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600"
                   onClick={handleRedeem}
                 >
                   <Award className="h-4 w-4 mr-2" />
-                  Redeemed
+                  Redeem
                 </Button>
                 
                 <Link to="/send" onClick={onClose} className="w-full">
