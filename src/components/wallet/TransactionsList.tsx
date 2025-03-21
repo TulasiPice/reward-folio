@@ -36,11 +36,6 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
 
   return (
     <div className="space-y-4">
-      <div className="text-center mb-6">
-        <h3 className="text-lg font-medium">Transaction History</h3>
-        <p className="text-sm text-muted-foreground">Your recent activity</p>
-      </div>
-
       <div className="divide-y divide-border rounded-lg overflow-hidden border border-border">
         {transactions.map((transaction) => (
           <Link 

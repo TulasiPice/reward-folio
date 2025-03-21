@@ -106,6 +106,12 @@ export default function History() {
         </Card>
       ) : (
         <>
+          {/* Add the heading and subheading at the top */}
+          <div className="text-left mb-4">
+            <h1 className="text-lg font-medium">Transaction History</h1>
+            <p className="text-sm text-muted-foreground">Your recent activity</p>
+          </div>
+          
           <div className="mb-4">
             <div className="relative">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
