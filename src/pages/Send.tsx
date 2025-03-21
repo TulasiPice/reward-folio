@@ -10,6 +10,7 @@ import { ArrowLeft, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 export default function Send() {
   const [amount, setAmount] = useState("");
@@ -86,21 +87,24 @@ export default function Send() {
           
           <div className="space-y-2">
             <Label>Contacts</Label>
-            <ScrollArea className="h-56 w-full rounded-md border p-4">
-              <div className="grid grid-cols-2 gap-3">
-                {recentContacts.slice(0, 6).map((contact) => (
-                  <Card 
-                    key={contact.id} 
-                    className="overflow-hidden cursor-pointer hover:bg-accent/10 transition-colors"
-                    onClick={() => setRecipient(contact.name)}
-                  >
-                    <CardContent className="p-3 flex items-center gap-2">
-                      <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
-                      <span className="text-sm font-medium truncate">{contact.name}</span>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+            <div className="border rounded-md p-4">
+              <Carousel className="w-full">
+                <CarouselContent className="-ml-2">
+                  {recentContacts.slice(0, 6).map((contact) => (
+                    <CarouselItem key={contact.id} className="pl-2 basis-1/3 sm:basis-1/4 md:basis-1/5">
+                      <Card 
+                        className="overflow-hidden cursor-pointer hover:bg-accent/10 transition-colors h-full"
+                        onClick={() => setRecipient(contact.name)}
+                      >
+                        <CardContent className="p-3 flex flex-col items-center gap-2 justify-center h-full">
+                          <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
+                          <span className="text-xs font-medium truncate text-center w-full">{contact.name}</span>
+                        </CardContent>
+                      </Card>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
               
               <HoverCard>
                 <HoverCardTrigger asChild>
@@ -131,7 +135,7 @@ export default function Send() {
                   </div>
                 </HoverCardContent>
               </HoverCard>
-            </ScrollArea>
+            </div>
           </div>
         </CardContent>
         <CardFooter>
