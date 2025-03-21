@@ -4,7 +4,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { ProductSelection } from "./ProductSelection";
 import { ShareOptions } from "./ShareOptions";
 import { useToast } from "@/hooks/use-toast";
-import { Step } from "lucide-react";
 
 type Product = {
   id: number;
