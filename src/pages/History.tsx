@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
@@ -19,16 +18,13 @@ export default function History() {
   const isMobile = useIsMobile();
   const { toast } = useToast();
   
-  // Filter transactions based on search term and selected filter
   useEffect(() => {
     let result = transactions;
     
-    // Apply type filter
     if (filter !== "all") {
       result = result.filter(tx => tx.type === filter);
     }
     
-    // Apply search filter if there's a search term
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
       result = result.filter(tx => 
@@ -40,7 +36,6 @@ export default function History() {
     setFilteredTransactions(result);
   }, [searchTerm, filter]);
   
-  // Get transaction ID from URL if present
   const transactionId = searchParams.get("id");
   const selectedTransaction = transactionId 
     ? transactions.find(tx => tx.id === transactionId)
@@ -122,7 +117,7 @@ export default function History() {
                   onClick={handleRedeemTransaction}
                 >
                   <Award className="mr-2" />
-                  Redeem Transaction
+                  Redeemed
                 </Button>
               </div>
             )}
@@ -130,7 +125,6 @@ export default function History() {
         </Card>
       ) : (
         <>
-          {/* Add the heading and subheading at the top */}
           <div className="text-left mb-4">
             <h1 className="text-lg font-medium">Transaction History</h1>
             <p className="text-sm text-muted-foreground">Your recent activity</p>
