@@ -106,7 +106,7 @@ export default function Withdraw() {
                 id="amount"
                 type="number"
                 placeholder="0"
-                className="pl-7 border-none bg-transparent focus-visible:ring-0 text-xl font-medium"
+                className="pl-7 border-none bg-transparent focus-visible:ring-0 text-xl font-medium [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
