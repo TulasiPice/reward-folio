@@ -24,7 +24,7 @@ const products = [
   }
 ];
 
-export function TopProducts() {
+export function TopProducts({ onSelectProduct }: { onSelectProduct?: (product: any) => void } = {}) {
   return (
     <Card className="hover:shadow-md transition-all duration-300">
       <CardHeader className="pb-3">
@@ -49,7 +49,12 @@ export function TopProducts() {
                   {product.reward}
                 </span>
               </div>
-              <Button variant="ghost" size="sm" className="mt-2 text-xs w-full justify-between">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="mt-2 text-xs w-full justify-between"
+                onClick={() => onSelectProduct && onSelectProduct(product)}
+              >
                 Share this product <ChevronRight className="h-3 w-3" />
               </Button>
             </div>
