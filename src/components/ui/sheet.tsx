@@ -2,6 +2,7 @@
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { cva, type VariantProps } from "class-variance-authority"
 import * as React from "react"
+import { Calendar } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -122,6 +123,5 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 export {
   Sheet, SheetClose,
-  SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetOverlay, SheetPortal, SheetTitle, SheetTrigger
+  SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetOverlay, SheetPortal, SheetTitle, SheetTrigger, Calendar
 }
-
