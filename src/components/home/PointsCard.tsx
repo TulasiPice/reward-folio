@@ -39,7 +39,7 @@ export function PointsCard() {
             <div className="bg-white/10 rounded-lg p-3">
               <div className="flex items-center gap-2 text-white/80 text-sm mb-1">
                 <Wallet size={16} />
-                <span>Cash Balance</span>
+                <span>Cash</span>
               </div>
               <div className="flex items-baseline">
                 <span className="text-white text-2xl font-bold mr-1">₹</span>
@@ -54,7 +54,7 @@ export function PointsCard() {
             <div className="bg-white/10 rounded-lg p-3">
               <div className="flex items-center gap-2 text-white/80 text-sm mb-1">
                 <Coins size={16} />
-                <span>Points Balance</span>
+                <span>Points</span>
               </div>
               <div className="flex items-baseline">
                 <AnimatedNumber 

@@ -100,7 +100,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
             
             <TabsContent value="cash" className="p-6 pt-4 space-y-6 flex-1 overflow-auto">
               <div className="text-center">
-                <p className="text-sm text-muted-foreground mb-1">Total Balance</p>
+                <p className="text-sm text-muted-foreground mb-1">Total Cash</p>
                 <div className="text-3xl font-bold">
                   <AnimatedNumber 
                     value={cashData.total} 
@@ -164,7 +164,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
             
             <TabsContent value="points" className="p-6 pt-4 space-y-6 flex-1 overflow-auto">
               <div className="text-center">
-                <p className="text-sm text-muted-foreground mb-1">Points Balance</p>
+                <p className="text-sm text-muted-foreground mb-1">Total Points</p>
                 <div className="text-3xl font-bold">
                   <AnimatedNumber 
                     value={pointsData.total} 
