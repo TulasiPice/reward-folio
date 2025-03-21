@@ -1,12 +1,12 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
 import { transactions } from "@/utils/mockData";
 import { ArrowLeft, Search } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export default function History() {
   const [searchParams] = useSearchParams();
@@ -118,25 +118,29 @@ export default function History() {
             </div>
           </div>
           
-          <Tabs defaultValue="all" value={filter} onValueChange={setFilter}>
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="sent">Sent</TabsTrigger>
-              <TabsTrigger value="received">Received</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="all" className="pt-4">
-              <TransactionsList transactions={filteredTransactions} />
-            </TabsContent>
-            
-            <TabsContent value="sent" className="pt-4">
-              <TransactionsList transactions={filteredTransactions} />
-            </TabsContent>
-            
-            <TabsContent value="received" className="pt-4">
-              <TransactionsList transactions={filteredTransactions} />
-            </TabsContent>
-          </Tabs>
+          <div className="mb-6">
+            <ToggleGroup 
+              type="single" 
+              value={filter} 
+              onValueChange={(value) => value && setFilter(value)}
+              className="w-full justify-start gap-2"
+            >
+              <ToggleGroupItem value="all" className="rounded-full px-4 py-1.5 text-sm">
+                All
+              </ToggleGroupItem>
+              <ToggleGroupItem value="sent" className="rounded-full px-4 py-1.5 text-sm bg-blue-100 text-blue-800 dark:bg-blue-950/30 dark:text-blue-400 data-[state=on]:bg-blue-200 dark:data-[state=on]:bg-blue-800/40">
+                Sent
+              </ToggleGroupItem>
+              <ToggleGroupItem value="received" className="rounded-full px-4 py-1.5 text-sm bg-emerald-100 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-400 data-[state=on]:bg-emerald-200 dark:data-[state=on]:bg-emerald-800/40">
+                Received
+              </ToggleGroupItem>
+              <ToggleGroupItem value="reward" className="rounded-full px-4 py-1.5 text-sm bg-amber-100 text-amber-800 dark:bg-amber-950/30 dark:text-amber-400 data-[state=on]:bg-amber-200 dark:data-[state=on]:bg-amber-800/40">
+                Reward
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+          
+          <TransactionsList transactions={filteredTransactions} />
         </>
       )}
     </div>
