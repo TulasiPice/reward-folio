@@ -3,11 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
 import { transactions } from "@/utils/mockData";
-import { ArrowLeft, Search } from "lucide-react";
+import { ArrowLeft, Search, Award } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 export default function History() {
   const [searchParams] = useSearchParams();
@@ -15,6 +17,7 @@ export default function History() {
   const [filteredTransactions, setFilteredTransactions] = useState(transactions);
   const [filter, setFilter] = useState("all");
   const isMobile = useIsMobile();
+  const { toast } = useToast();
   
   // Filter transactions based on search term and selected filter
   useEffect(() => {
@@ -42,6 +45,15 @@ export default function History() {
   const selectedTransaction = transactionId 
     ? transactions.find(tx => tx.id === transactionId)
     : null;
+
+  const handleRedeemTransaction = () => {
+    toast({
+      title: "Transaction Redeemed!",
+      description: `You've successfully redeemed points from transaction ${selectedTransaction?.id}`,
+    });
+  };
+
+  const isRedeemable = selectedTransaction?.type === 'received';
 
   return (
     <div className="space-y-6">
@@ -102,6 +114,18 @@ export default function History() {
                 <span className="font-medium">{selectedTransaction.id}</span>
               </div>
             </div>
+
+            {isRedeemable && (
+              <div className="pt-4">
+                <Button 
+                  className="w-full"
+                  onClick={handleRedeemTransaction}
+                >
+                  <Award className="mr-2" />
+                  Redeem Transaction
+                </Button>
+              </div>
+            )}
           </CardContent>
         </Card>
       ) : (
