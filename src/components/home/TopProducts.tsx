@@ -45,7 +45,7 @@ export function TopProducts({ onSelectProduct }: { onSelectProduct?: (product: a
                   <h3 className="font-medium">{product.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1">{product.description}</p>
                 </div>
-                <span className="text-sm font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full">
+                <span className="text-xs font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full">
                   {product.reward}
                 </span>
               </div>
