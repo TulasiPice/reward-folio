@@ -4,7 +4,6 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ReferralFlow } from "./ReferralFlow";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { ReferralWelcome } from "./ReferralWelcome";
 
 interface ReferralModalProps {
   isOpen: boolean;
@@ -14,33 +13,13 @@ interface ReferralModalProps {
 
 export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModalProps) {
   const [selectedProduct, setSelectedProduct] = useState(initialProduct || null);
-  const [showWelcome, setShowWelcome] = useState(true);
-
-  // Reset to welcome screen when modal closes
-  useEffect(() => {
-    if (!isOpen) {
-      // Small delay to avoid flashing during transition
-      const timer = setTimeout(() => {
-        setShowWelcome(true);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
 
   // If a product is initially selected, skip welcome screen
   useEffect(() => {
     if (initialProduct) {
-      setShowWelcome(false);
+      setSelectedProduct(initialProduct);
     }
   }, [initialProduct]);
-
-  const handleProductSelect = (product: any) => {
-    setSelectedProduct(product);
-  };
-
-  const handleStart = () => {
-    setShowWelcome(false);
-  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -56,10 +35,7 @@ export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModal
 
           {/* Content section */}
           <div className="flex-1 overflow-auto">
-            <ReferralFlow
-              onSelectProduct={handleProductSelect}
-              selectedProduct={selectedProduct}
-            />
+            <ReferralFlow product={selectedProduct} onBack={() => {}} onShare={() => {}} />
           </div>
         </div>
       </DialogContent>
