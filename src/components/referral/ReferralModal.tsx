@@ -43,7 +43,7 @@ export function ReferralModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none">
+      <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none" hideCloseButton>
         <div className="flex flex-col h-full">
           {/* Header section */}
           <div className="bg-background border-b px-6 py-4 flex items-center justify-between">
