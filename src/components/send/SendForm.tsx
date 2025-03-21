@@ -43,7 +43,7 @@ export function SendForm() {
     
     // Simulate API call
     setTimeout(() => {
-      toast.success(`${formatPoints(amount)} points sent to ${selectedUser.name}`);
+      toast.success(`₹ ${formatPoints(amount)} sent to ${selectedUser.name}`);
       setSelectedUser(null);
       setAmount(100);
       setMessage("");
@@ -81,7 +81,7 @@ export function SendForm() {
                     <UserAvatar src={user.avatar} name={user.name} />
                     <div className="flex-1">
                       <p className="font-medium">{user.name}</p>
-                      <p className="text-sm text-muted-foreground">{formatPoints(user.points)} points</p>
+                      <p className="text-sm text-muted-foreground">₹ {formatPoints(user.points)}</p>
                     </div>
                     {selectedUser?.id === user.id && (
                       <div className="h-2 w-2 rounded-full bg-primary"></div>
@@ -112,12 +112,12 @@ export function SendForm() {
                   className="pl-10"
                 />
                 <div className="absolute left-3 top-1/2 transform -translate-y-1/2 font-semibold text-primary">
-                  ★
+                  ₹
                 </div>
               </div>
               <div className="flex justify-between mt-2 text-sm">
                 <span className="text-muted-foreground">Your balance</span>
-                <AnimatedNumber value={currentUser.points} className="font-medium" />
+                <AnimatedNumber value={currentUser.points} prefix="₹ " className="font-medium" />
               </div>
             </div>
             
@@ -135,7 +135,7 @@ export function SendForm() {
               className="w-full"
               disabled={!selectedUser || amount <= 0 || amount > currentUser.points || sending}
             >
-              {sending ? "Sending..." : "Send Points"}
+              {sending ? "Sending..." : "Send"}
               <Send size={16} className="ml-2" />
             </Button>
           </form>

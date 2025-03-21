@@ -38,7 +38,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     {
       id: 'v1',
       title: 'Coffee Break',
-      value: '$15',
+      value: '₹15',
       expiryDate: '2023-12-31',
       isNew: true,
       color: 'bg-amber-100'
@@ -46,7 +46,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     {
       id: 'v2',
       title: 'Lunch Voucher',
-      value: '$25',
+      value: '₹25',
       expiryDate: '2023-11-30',
       isNew: false,
       color: 'bg-emerald-100'

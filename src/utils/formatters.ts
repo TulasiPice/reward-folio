@@ -27,11 +27,11 @@ export const formatRelativeTime = (dateString: string): string => {
 // Format transaction amount with + or - sign
 export const formatTransactionAmount = (transaction: { type: string; amount: number }): string => {
   if (transaction.type === 'received') {
-    return `+${formatPoints(transaction.amount)}`;
+    return `+₹${formatPoints(transaction.amount)}`;
   } else if (transaction.type === 'sent' || transaction.type === 'reward') {
-    return `-${formatPoints(Math.abs(transaction.amount))}`;
+    return `-₹${formatPoints(Math.abs(transaction.amount))}`;
   }
-  return formatPoints(transaction.amount);
+  return `₹${formatPoints(transaction.amount)}`;
 };
 
 // Get appropriate color for transaction type

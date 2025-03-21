@@ -39,7 +39,7 @@ export function RewardCard({ reward, userPoints }: RewardCardProps) {
           className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
         />
         <div className="absolute top-3 right-3 bg-black/70 text-white text-xs font-medium px-2 py-1 rounded-full backdrop-blur-sm">
-          {formatPoints(reward.pointsCost)} points
+          ₹ {formatPoints(reward.pointsCost)}
         </div>
       </div>
       

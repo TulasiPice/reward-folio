@@ -72,7 +72,7 @@ export function RecentTransactions() {
             </div>
             <div className="flex flex-col items-end">
               <span className={`font-semibold ${getTransactionColor(transaction.type)}`}>
-                {formatTransactionAmount(transaction)}
+                {formatTransactionAmount(transaction).replace('$', '₹')}
               </span>
               <div className="mt-1">
                 {getStatusBadge(transaction.type)}
