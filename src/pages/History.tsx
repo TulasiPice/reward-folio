@@ -130,7 +130,6 @@ const History = () => {
                   <div>
                     <div className="flex items-center space-x-2">
                       <span className="font-medium">{transaction.user.name}</span>
-                      {getStatusBadge(transaction.type)}
                     </div>
                     <div className="text-sm text-muted-foreground flex items-center mt-1">
                       <span>{formatDate(transaction.date)}</span>
@@ -139,14 +138,19 @@ const History = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex flex-col items-end">
                   <span className={`font-semibold ${getTransactionColor(transaction.type)}`}>
                     {formatTransactionAmount(transaction)}
                   </span>
-                  {expandedTransaction === transaction.id ? 
-                    <ChevronUp size={20} className="text-muted-foreground" /> : 
-                    <ChevronDown size={20} className="text-muted-foreground" />
-                  }
+                  <div className="mt-1">
+                    {getStatusBadge(transaction.type)}
+                  </div>
+                  <div className="mt-1">
+                    {expandedTransaction === transaction.id ? 
+                      <ChevronUp size={20} className="text-muted-foreground" /> : 
+                      <ChevronDown size={20} className="text-muted-foreground" />
+                    }
+                  </div>
                 </div>
               </div>
               

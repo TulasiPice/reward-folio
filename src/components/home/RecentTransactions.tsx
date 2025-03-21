@@ -67,15 +67,17 @@ export function RecentTransactions() {
                   <span className="text-xs text-muted-foreground mr-2">
                     {formatRelativeTime(transaction.date)}
                   </span>
-                  {getStatusBadge(transaction.type)}
                 </div>
               </div>
             </div>
-            <div className="flex items-center">
-              <span className={`font-semibold mr-2 ${getTransactionColor(transaction.type)}`}>
+            <div className="flex flex-col items-end">
+              <span className={`font-semibold ${getTransactionColor(transaction.type)}`}>
                 {formatTransactionAmount(transaction)}
               </span>
-              <ChevronRight size={16} className="text-muted-foreground" />
+              <div className="mt-1 flex items-center space-x-2">
+                {getStatusBadge(transaction.type)}
+                <ChevronRight size={16} className="text-muted-foreground" />
+              </div>
             </div>
           </Link>
         ))}
