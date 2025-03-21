@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProductSelection } from "./ProductSelection";
-import { ShareOptions } from "./ShareOptions";
+import { ReferralFlow } from "./ReferralFlow";
 import { useToast } from "@/hooks/use-toast";
 
 type Product = {
@@ -21,33 +21,26 @@ export function ReferralModal({
   onClose: () => void;
   initialProduct?: Product | null;
 }) {
-  const [step, setStep] = useState(initialProduct ? 2 : 1);
+  const [step, setStep] = useState(initialProduct ? "flow" : "product");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(initialProduct);
   const { toast } = useToast();
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product);
-    setStep(2);
+    setStep("flow");
   };
   
-  const handleShare = (platform: string) => {
+  const handleShare = (target: string) => {
     // In a real app, this would handle the actual sharing logic
     toast({
-      title: "Referral sent!",
-      description: "You're one step closer to your reward.",
+      title: "🎉 Invite sent!",
+      description: "You're 1 step closer to earning rewards!",
       duration: 3000,
     });
-    
-    setTimeout(() => {
-      onClose();
-      // Reset the modal state for next time
-      setStep(1);
-      setSelectedProduct(null);
-    }, 1000);
   };
 
   const handleBack = () => {
-    setStep(1);
+    setStep("product");
   };
 
   return (
@@ -55,14 +48,14 @@ export function ReferralModal({
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
-            {step === 1 ? "Select a Product to Refer" : "Share Your Referral"}
+            {step === "product" ? "Select a Product to Refer" : "Invite Friends & Earn Rewards"}
           </DialogTitle>
         </DialogHeader>
         
-        {step === 1 ? (
+        {step === "product" ? (
           <ProductSelection onSelect={handleProductSelect} />
         ) : (
-          <ShareOptions 
+          <ReferralFlow 
             product={selectedProduct} 
             onShare={handleShare}
             onBack={handleBack}
