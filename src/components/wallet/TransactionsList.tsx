@@ -38,29 +38,27 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
         <p className="text-sm text-muted-foreground">Your recent activity</p>
       </div>
 
-      <div className="divide-y divide-border">
+      <div className="divide-y divide-border rounded-lg overflow-hidden border border-border">
         {transactions.map((transaction) => (
           <Link 
             to={`/history?id=${transaction.id}`} 
             key={transaction.id} 
-            className="flex items-center justify-between p-3 px-2 hover:bg-muted/50 transition-colors animate-fade-in"
+            className="flex items-center justify-between py-3 px-4 hover:bg-muted/50 transition-colors animate-fade-in"
           >
             <div className="flex items-center space-x-3">
+              <UserAvatar 
+                src={transaction.user.avatar} 
+                name={transaction.user.name}
+                size="sm"
+              />
               <div className="flex flex-col">
-                <div className="flex items-center space-x-2">
-                  <UserAvatar 
-                    src={transaction.user.avatar} 
-                    name={transaction.user.name}
-                    size="sm"
-                  />
-                  <span className="font-medium">{transaction.user.name}</span>
-                </div>
+                <span className="font-medium">{transaction.user.name}</span>
                 <div className="flex items-center mt-1">
-                  <span className="text-xs text-muted-foreground mr-2">
+                  <span className="text-xs text-muted-foreground">
                     {formatRelativeTime(transaction.date)}
                   </span>
                   {transaction.description && (
-                    <span className="text-xs truncate max-w-[150px]">
+                    <span className="text-xs truncate max-w-[150px] ml-2">
                       {transaction.description}
                     </span>
                   )}
