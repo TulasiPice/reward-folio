@@ -23,13 +23,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import {
@@ -39,12 +32,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-
-const standardFormSchema = z.object({
-  amount: z.string().min(1, "Amount is required"),
-  method: z.string().min(1, "Withdrawal method is required"),
-  address: z.string().min(1, "Withdrawal address is required"),
-});
 
 const upiFormSchema = z.object({
   amount: z.string().min(1, "Amount is required"),
@@ -60,16 +47,7 @@ const bankFormSchema = z.object({
 
 const Withdraw = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("standard");
-  
-  const standardForm = useForm<z.infer<typeof standardFormSchema>>({
-    resolver: zodResolver(standardFormSchema),
-    defaultValues: {
-      amount: "",
-      method: "",
-      address: "",
-    },
-  });
+  const [paymentMethod, setPaymentMethod] = useState("upi");
   
   const upiForm = useForm<z.infer<typeof upiFormSchema>>({
     resolver: zodResolver(upiFormSchema),
@@ -88,21 +66,6 @@ const Withdraw = () => {
       ifscCode: "",
     },
   });
-  
-  const onStandardSubmit = async (values: z.infer<typeof standardFormSchema>) => {
-    setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Withdrawal initiated",
-      description: `You're withdrawing ${values.amount} cash to ${values.method}`,
-    });
-    
-    setIsSubmitting(false);
-    standardForm.reset();
-  };
   
   const onUpiSubmit = async (values: z.infer<typeof upiFormSchema>) => {
     setIsSubmitting(true);
@@ -135,9 +98,7 @@ const Withdraw = () => {
   };
 
   const handleSubmit = () => {
-    if (paymentMethod === "standard") {
-      standardForm.handleSubmit(onStandardSubmit)();
-    } else if (paymentMethod === "upi") {
+    if (paymentMethod === "upi") {
       upiForm.handleSubmit(onUpiSubmit)();
     } else if (paymentMethod === "bank") {
       bankForm.handleSubmit(onBankSubmit)();
@@ -176,16 +137,12 @@ const Withdraw = () => {
                 min="1"
                 className="pl-12 text-2xl h-14 font-semibold"
                 value={
-                  paymentMethod === "standard" 
-                    ? standardForm.watch("amount") 
-                    : paymentMethod === "upi" 
-                      ? upiForm.watch("amount") 
-                      : bankForm.watch("amount")
+                  paymentMethod === "upi" 
+                    ? upiForm.watch("amount") 
+                    : bankForm.watch("amount")
                 }
                 onChange={(e) => {
-                  if (paymentMethod === "standard") {
-                    standardForm.setValue("amount", e.target.value);
-                  } else if (paymentMethod === "upi") {
+                  if (paymentMethod === "upi") {
                     upiForm.setValue("amount", e.target.value);
                   } else if (paymentMethod === "bank") {
                     bankForm.setValue("amount", e.target.value);
@@ -205,26 +162,11 @@ const Withdraw = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Select payment method</h3>
             <RadioGroup
-              defaultValue="standard"
+              defaultValue="upi"
               value={paymentMethod}
               onValueChange={setPaymentMethod}
-              className="grid gap-4 md:grid-cols-3"
+              className="grid gap-4 md:grid-cols-2"
             >
-              <div>
-                <RadioGroupItem
-                  value="standard"
-                  id="standard"
-                  className="peer sr-only"
-                />
-                <label
-                  htmlFor="standard"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                >
-                  <Check className="h-5 w-5 text-primary hidden peer-data-[state=checked]:block [&:has([data-state=checked])]:block mb-3" />
-                  <span className="text-sm font-medium">Standard</span>
-                </label>
-              </div>
-              
               <div>
                 <RadioGroupItem
                   value="upi"
@@ -265,53 +207,6 @@ const Withdraw = () => {
 
           {/* Conditional Form Fields */}
           <div className="mt-6 space-y-6">
-            {paymentMethod === "standard" && (
-              <Form {...standardForm}>
-                <div className="space-y-4">
-                  <FormField
-                    control={standardForm.control}
-                    name="method"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Withdrawal method</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select withdrawal method" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="bankTransfer">Bank Transfer</SelectItem>
-                            <SelectItem value="paypal">PayPal</SelectItem>
-                            <SelectItem value="crypto">Cryptocurrency</SelectItem>
-                            <SelectItem value="giftCard">Gift Card</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={standardForm.control}
-                    name="address"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Withdrawal address</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your withdrawal address" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          Enter the address where you want to receive your cash.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              </Form>
-            )}
-
             {paymentMethod === "upi" && (
               <Form {...upiForm}>
                 <div className="space-y-4">
@@ -492,7 +387,6 @@ const Withdraw = () => {
           
           <div className="text-sm font-medium w-full pt-2">Withdrawal policy</div>
           <p className="text-sm text-muted-foreground">
-            {paymentMethod === "standard" && "Withdrawals are processed within 2-3 business days. Minimum withdrawal amount is ₹1,000."}
             {paymentMethod === "upi" && "Minimum withdrawal amount is ₹100. UPI withdrawals are usually processed faster than other methods."}
             {paymentMethod === "bank" && "Minimum withdrawal amount is ₹500. Bank transfers may take 2-3 business days to process."}
           </p>
