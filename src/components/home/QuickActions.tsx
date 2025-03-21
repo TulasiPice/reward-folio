@@ -1,14 +1,14 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Send, Gift, Clock, Users } from "lucide-react";
+import { Send, Download, Upload, Clock, ArrowDown, ArrowUp, Wallet, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export function QuickActions() {
   const actions = [
     { icon: Send, label: "Send", path: "/send", color: "bg-blue-100 text-blue-600" },
-    { icon: Gift, label: "Rewards", path: "/rewards", color: "bg-amber-100 text-amber-600" },
-    { icon: Clock, label: "History", path: "/history", color: "bg-purple-100 text-purple-600" },
-    { icon: Users, label: "Team", path: "/profile", color: "bg-emerald-100 text-emerald-600" }
+    { icon: ArrowDown, label: "Receive", path: "/receive", color: "bg-emerald-100 text-emerald-600" },
+    { icon: Wallet, label: "Withdraw", path: "/withdraw", color: "bg-amber-100 text-amber-600" },
+    { icon: FileText, label: "History", path: "/history", color: "bg-purple-100 text-purple-600" }
   ];
   
   return (
