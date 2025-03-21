@@ -4,12 +4,15 @@ import { UserAvatar } from "@/components/shared/UserAvatar";
 import { Transaction } from "@/utils/mockData";
 import { formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
 import { Link } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface TransactionsListProps {
   transactions: Transaction[];
 }
 
 export function TransactionsList({ transactions }: TransactionsListProps) {
+  const isMobile = useIsMobile();
+  
   const getStatusBadge = (type: string) => {
     switch (type) {
       case 'received':
@@ -45,20 +48,20 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
             key={transaction.id} 
             className="flex items-center justify-between py-3 px-4 hover:bg-muted/50 transition-colors animate-fade-in"
           >
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 overflow-hidden">
               <UserAvatar 
                 src={transaction.user.avatar} 
                 name={transaction.user.name}
-                size="sm"
+                size={isMobile ? "xs" : "sm"}
               />
-              <div className="flex flex-col">
-                <span className="font-medium">{transaction.user.name}</span>
-                <div className="flex items-center mt-1">
-                  <span className="text-xs text-muted-foreground">
+              <div className="flex flex-col min-w-0">
+                <span className="font-medium truncate">{transaction.user.name}</span>
+                <div className="flex items-center mt-1 space-x-2">
+                  <span className="text-xs text-muted-foreground whitespace-nowrap">
                     {formatRelativeTime(transaction.date)}
                   </span>
-                  {transaction.description && (
-                    <span className="text-xs truncate max-w-[150px] ml-2">
+                  {transaction.description && !isMobile && (
+                    <span className="text-xs truncate max-w-[150px]">
                       {transaction.description}
                     </span>
                   )}

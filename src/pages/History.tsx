@@ -7,12 +7,14 @@ import { ArrowLeft, Search } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function History() {
   const [searchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredTransactions, setFilteredTransactions] = useState(transactions);
   const [filter, setFilter] = useState("all");
+  const isMobile = useIsMobile();
   
   // Filter transactions based on search term and selected filter
   useEffect(() => {
@@ -42,8 +44,8 @@ export default function History() {
     : null;
 
   return (
-    <div className="container max-w-md mx-auto py-6">
-      <div className="mb-6">
+    <div className="container max-w-md mx-auto pb-20 pt-4">
+      <div className="mb-4">
         <Link to="/" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted">
           <ArrowLeft className="h-4 w-4" />
         </Link>
@@ -117,34 +119,34 @@ export default function History() {
             </div>
           </div>
           
-          <div className="mb-6">
+          <div className="mb-6 overflow-x-auto pb-2">
             <ToggleGroup 
               type="single" 
               value={filter} 
               onValueChange={(value) => value && setFilter(value)}
-              className="w-full justify-start gap-2"
+              className={`w-full ${isMobile ? 'justify-start' : 'justify-center'} gap-2 flex-nowrap`}
             >
               <ToggleGroupItem 
                 value="all" 
-                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary whitespace-nowrap"
               >
                 All
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="sent" 
-                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary whitespace-nowrap"
               >
                 Sent
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="received" 
-                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary whitespace-nowrap"
               >
                 Received
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="reward" 
-                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary"
+                className="rounded-full px-4 py-1.5 text-sm border border-gray-300 dark:border-gray-700 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary whitespace-nowrap"
               >
                 Reward
               </ToggleGroupItem>
