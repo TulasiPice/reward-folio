@@ -1,8 +1,9 @@
+
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { ArrowLeft, ArrowUp, Calendar, Clock, CreditCard, Info, Timer } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Check, Clock, CreditCard, Info, Timer } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,15 +32,15 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const formSchema = z.object({
+const standardFormSchema = z.object({
   amount: z.string().min(1, "Amount is required"),
   method: z.string().min(1, "Withdrawal method is required"),
   address: z.string().min(1, "Withdrawal address is required"),
@@ -59,10 +60,10 @@ const bankFormSchema = z.object({
 
 const Withdraw = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [activeTab, setActiveTab] = useState("standard");
+  const [paymentMethod, setPaymentMethod] = useState("standard");
   
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const standardForm = useForm<z.infer<typeof standardFormSchema>>({
+    resolver: zodResolver(standardFormSchema),
     defaultValues: {
       amount: "",
       method: "",
@@ -88,7 +89,7 @@ const Withdraw = () => {
     },
   });
   
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onStandardSubmit = async (values: z.infer<typeof standardFormSchema>) => {
     setIsSubmitting(true);
     
     // Simulate API call
@@ -96,11 +97,11 @@ const Withdraw = () => {
     
     toast({
       title: "Withdrawal initiated",
-      description: `You're withdrawing ${values.amount} points to ${values.method}`,
+      description: `You're withdrawing ${values.amount} cash to ${values.method}`,
     });
     
     setIsSubmitting(false);
-    form.reset();
+    standardForm.reset();
   };
   
   const onUpiSubmit = async (values: z.infer<typeof upiFormSchema>) => {
@@ -132,6 +133,16 @@ const Withdraw = () => {
     setIsSubmitting(false);
     bankForm.reset();
   };
+
+  const handleSubmit = () => {
+    if (paymentMethod === "standard") {
+      standardForm.handleSubmit(onStandardSubmit)();
+    } else if (paymentMethod === "upi") {
+      upiForm.handleSubmit(onUpiSubmit)();
+    } else if (paymentMethod === "bank") {
+      bankForm.handleSubmit(onBankSubmit)();
+    }
+  };
   
   return (
     <div className="space-y-6">
@@ -147,69 +158,118 @@ const Withdraw = () => {
         </div>
       </div>
       
-      <Tabs 
-        defaultValue="standard" 
-        value={activeTab}
-        onValueChange={setActiveTab}
-        className="w-full"
-      >
-        <TabsList className="grid grid-cols-3 mb-6">
-          <TabsTrigger value="standard">Standard</TabsTrigger>
-          <TabsTrigger value="upi" className="flex items-center gap-2">
-            <img 
-              src="/lovable-uploads/598db391-65b3-4fd6-9167-0694b3f6b7da.png" 
-              alt="UPI" 
-              className="h-4 w-4 inline-block" 
-            />
-            UPI
-          </TabsTrigger>
-          <TabsTrigger value="bank" className="flex items-center gap-1">
-            <CreditCard className="h-3.5 w-3.5" />
-            Bank
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="standard">
-          <Card>
-            <CardHeader>
-              <CardTitle>Withdraw Your Cash</CardTitle>
-              <CardDescription>
-                You can withdraw your cash to various payment methods.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="amount"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Amount to withdraw</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Input 
-                              placeholder="0" 
-                              {...field} 
-                              type="number"
-                              min="1"
-                              className="pl-12"
-                            />
-                            <div className="absolute inset-y-0 left-0 flex items-center px-3 pointer-events-none text-muted-foreground font-medium">
-                              Cash:
-                            </div>
-                          </div>
-                        </FormControl>
-                        <FormDescription>
-                          Your available balance: ₹3,240
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+      <Card>
+        <CardHeader>
+          <CardTitle>Withdraw Your Cash</CardTitle>
+          <CardDescription>
+            You can withdraw your cash to various payment methods.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Prominent Amount Section */}
+          <div className="bg-muted/40 rounded-lg p-6 border">
+            <h3 className="text-lg font-medium mb-4">Amount to withdraw</h3>
+            <div className="relative w-full max-w-md mx-auto mb-2">
+              <Input 
+                placeholder="0" 
+                type="number"
+                min="1"
+                className="pl-12 text-2xl h-14 font-semibold"
+                value={
+                  paymentMethod === "standard" 
+                    ? standardForm.watch("amount") 
+                    : paymentMethod === "upi" 
+                      ? upiForm.watch("amount") 
+                      : bankForm.watch("amount")
+                }
+                onChange={(e) => {
+                  if (paymentMethod === "standard") {
+                    standardForm.setValue("amount", e.target.value);
+                  } else if (paymentMethod === "upi") {
+                    upiForm.setValue("amount", e.target.value);
+                  } else if (paymentMethod === "bank") {
+                    bankForm.setValue("amount", e.target.value);
+                  }
+                }}
+              />
+              <div className="absolute inset-y-0 left-0 flex items-center px-3 pointer-events-none text-muted-foreground font-medium text-lg">
+                ₹
+              </div>
+            </div>
+            <p className="text-sm text-center text-muted-foreground">
+              Your available balance: ₹3,240
+            </p>
+          </div>
+
+          {/* Payment Method Selection */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-medium">Select payment method</h3>
+            <RadioGroup
+              defaultValue="standard"
+              value={paymentMethod}
+              onValueChange={setPaymentMethod}
+              className="grid gap-4 md:grid-cols-3"
+            >
+              <div>
+                <RadioGroupItem
+                  value="standard"
+                  id="standard"
+                  className="peer sr-only"
+                />
+                <label
+                  htmlFor="standard"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <Check className="h-5 w-5 text-primary hidden peer-data-[state=checked]:block [&:has([data-state=checked])]:block mb-3" />
+                  <span className="text-sm font-medium">Standard</span>
+                </label>
+              </div>
+              
+              <div>
+                <RadioGroupItem
+                  value="upi"
+                  id="upi"
+                  className="peer sr-only"
+                />
+                <label
+                  htmlFor="upi"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <Check className="h-5 w-5 text-primary hidden peer-data-[state=checked]:block [&:has([data-state=checked])]:block mb-3" />
+                  <img 
+                    src="/lovable-uploads/598db391-65b3-4fd6-9167-0694b3f6b7da.png" 
+                    alt="UPI" 
+                    className="h-6 w-6 mb-3" 
                   />
-                  
+                  <span className="text-sm font-medium">UPI</span>
+                </label>
+              </div>
+              
+              <div>
+                <RadioGroupItem
+                  value="bank"
+                  id="bank"
+                  className="peer sr-only"
+                />
+                <label
+                  htmlFor="bank"
+                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-transparent p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                >
+                  <Check className="h-5 w-5 text-primary hidden peer-data-[state=checked]:block [&:has([data-state=checked])]:block mb-3" />
+                  <CreditCard className="h-6 w-6 mb-3" />
+                  <span className="text-sm font-medium">Bank</span>
+                </label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Conditional Form Fields */}
+          <div className="mt-6 space-y-6">
+            {paymentMethod === "standard" && (
+              <Form {...standardForm}>
+                <div className="space-y-4">
                   <FormField
-                    control={form.control}
+                    control={standardForm.control}
                     name="method"
                     render={({ field }) => (
                       <FormItem>
@@ -233,7 +293,7 @@ const Withdraw = () => {
                   />
                   
                   <FormField
-                    control={form.control}
+                    control={standardForm.control}
                     name="address"
                     render={({ field }) => (
                       <FormItem>
@@ -248,72 +308,13 @@ const Withdraw = () => {
                       </FormItem>
                     )}
                   />
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Processing..."
-                    ) : (
-                      <>
-                        <ArrowUp className="mr-2 h-4 w-4" />
-                        Withdraw Cash
-                      </>
-                    )}
-                  </Button>
-                </form>
+                </div>
               </Form>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-2 items-start border-t pt-6">
-              <div className="text-sm font-medium">Withdrawal policy</div>
-              <p className="text-sm text-muted-foreground">
-                Withdrawals are processed within 2-3 business days. Minimum withdrawal amount is ₹1,000.
-              </p>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="upi">
-          <Card>
-            <CardHeader>
-              <CardTitle>Withdraw via UPI</CardTitle>
-              <CardDescription>
-                Withdraw your cash directly to your UPI ID.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+            )}
+
+            {paymentMethod === "upi" && (
               <Form {...upiForm}>
-                <form onSubmit={upiForm.handleSubmit(onUpiSubmit)} className="space-y-6">
-                  <FormField
-                    control={upiForm.control}
-                    name="amount"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Amount to withdraw (₹)</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Input 
-                              placeholder="0" 
-                              {...field} 
-                              type="number"
-                              min="100"
-                              className="pl-8"
-                            />
-                            <div className="absolute inset-y-0 left-0 flex items-center px-3 pointer-events-none text-muted-foreground font-medium">
-                              ₹
-                            </div>
-                          </div>
-                        </FormControl>
-                        <FormDescription>
-                          Your available balance: ₹3,240
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
+                <div className="space-y-4">
                   <FormField
                     control={upiForm.control}
                     name="upiId"
@@ -369,72 +370,13 @@ const Withdraw = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Processing..."
-                    ) : (
-                      <>
-                        <ArrowUp className="h-4 w-4 mr-2" />
-                        Withdraw to UPI
-                      </>
-                    )}
-                  </Button>
-                </form>
+                </div>
               </Form>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-2 items-start border-t pt-6">
-              <div className="text-sm font-medium">UPI withdrawal policy</div>
-              <p className="text-sm text-muted-foreground">
-                Minimum withdrawal amount is ₹100. UPI withdrawals are usually processed faster than other methods.
-              </p>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="bank">
-          <Card>
-            <CardHeader>
-              <CardTitle>Bank Transfer</CardTitle>
-              <CardDescription>
-                Withdraw directly to your bank account.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+            )}
+
+            {paymentMethod === "bank" && (
               <Form {...bankForm}>
-                <form onSubmit={bankForm.handleSubmit(onBankSubmit)} className="space-y-6">
-                  <FormField
-                    control={bankForm.control}
-                    name="amount"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Amount to withdraw (₹)</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <Input 
-                              placeholder="0" 
-                              {...field} 
-                              type="number"
-                              min="500"
-                              className="pl-8"
-                            />
-                            <div className="absolute inset-y-0 left-0 flex items-center px-3 pointer-events-none text-muted-foreground font-medium">
-                              ₹
-                            </div>
-                          </div>
-                        </FormControl>
-                        <FormDescription>
-                          Your available balance: ₹3,240
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
+                <div className="space-y-4">
                   <FormField
                     control={bankForm.control}
                     name="accountHolder"
@@ -527,33 +469,35 @@ const Withdraw = () => {
                       </div>
                     </div>
                   </div>
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Processing..."
-                    ) : (
-                      <>
-                        <ArrowUp className="h-4 w-4 mr-2" />
-                        Withdraw to Bank
-                      </>
-                    )}
-                  </Button>
-                </form>
+                </div>
               </Form>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-2 items-start border-t pt-6">
-              <div className="text-sm font-medium">Bank withdrawal policy</div>
-              <p className="text-sm text-muted-foreground">
-                Minimum withdrawal amount is ₹500. Bank transfers may take 2-3 business days to process.
-              </p>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+            )}
+          </div>
+        </CardContent>
+        <CardFooter className="flex flex-col space-y-4 items-start border-t pt-6">
+          <Button 
+            onClick={handleSubmit}
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              "Processing..."
+            ) : (
+              <>
+                <ArrowUp className="h-4 w-4 mr-2" />
+                Withdraw Cash
+              </>
+            )}
+          </Button>
+          
+          <div className="text-sm font-medium w-full pt-2">Withdrawal policy</div>
+          <p className="text-sm text-muted-foreground">
+            {paymentMethod === "standard" && "Withdrawals are processed within 2-3 business days. Minimum withdrawal amount is ₹1,000."}
+            {paymentMethod === "upi" && "Minimum withdrawal amount is ₹100. UPI withdrawals are usually processed faster than other methods."}
+            {paymentMethod === "bank" && "Minimum withdrawal amount is ₹500. Bank transfers may take 2-3 business days to process."}
+          </p>
+        </CardFooter>
+      </Card>
     </div>
   );
 };
