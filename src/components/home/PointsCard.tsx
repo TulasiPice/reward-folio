@@ -48,7 +48,6 @@ export function PointsCard() {
                   className="text-white text-2xl font-bold" 
                   duration={1500}
                 />
-                <span className="text-white/80 ml-2 text-sm">points</span>
               </div>
             </div>
             
@@ -63,7 +62,6 @@ export function PointsCard() {
                   className="text-white text-2xl font-bold" 
                   duration={1500}
                 />
-                <span className="text-white/80 ml-2 text-sm">points</span>
               </div>
             </div>
           </div>
