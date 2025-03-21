@@ -13,7 +13,7 @@ import { useState } from "react";
 
 export default function Withdraw() {
   const [amount, setAmount] = useState("");
-  const [withdrawMethod, setWithdrawMethod] = useState("bank");
+  const [withdrawMethod, setWithdrawMethod] = useState("upi");
   const [bankAccount, setBankAccount] = useState("");
   const [upiId, setUpiId] = useState("");
   const [processing, setProcessing] = useState(false);
@@ -117,14 +117,14 @@ export default function Withdraw() {
             <Label>Withdrawal Method</Label>
             <RadioGroup value={withdrawMethod} onValueChange={setWithdrawMethod} className="flex flex-col space-y-3">
               <div className="flex items-center space-x-3 rounded-lg border p-4">
-                <RadioGroupItem value="bank" id="bank" />
-                <Label htmlFor="bank" className="flex-1 cursor-pointer font-medium">Bank Transfer</Label>
-                <span className="text-xs text-muted-foreground">1-2 days</span>
-              </div>
-              <div className="flex items-center space-x-3 rounded-lg border p-4">
                 <RadioGroupItem value="upi" id="upi" />
                 <Label htmlFor="upi" className="flex-1 cursor-pointer font-medium">UPI</Label>
                 <span className="text-xs text-muted-foreground">Instant</span>
+              </div>
+              <div className="flex items-center space-x-3 rounded-lg border p-4">
+                <RadioGroupItem value="bank" id="bank" />
+                <Label htmlFor="bank" className="flex-1 cursor-pointer font-medium">Bank Transfer</Label>
+                <span className="text-xs text-muted-foreground">1-2 days</span>
               </div>
             </RadioGroup>
           </div>
