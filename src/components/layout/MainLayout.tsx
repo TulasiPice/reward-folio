@@ -1,7 +1,6 @@
 
 import { Outlet, useLocation, Navigate } from "react-router-dom";
 import { TransitionWrapper } from "./TransitionWrapper";
-import { Navbar } from "./Navbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 export function MainLayout() {
@@ -18,11 +17,10 @@ export function MainLayout() {
   return (
     <div className="min-h-screen max-w-md sm:max-w-lg md:max-w-2xl mx-auto">
       <TransitionWrapper>
-        <main className={`p-4 sm:p-6 ${isMobile ? 'pb-24' : ''}`}>
+        <main className="p-4 sm:p-6">
           <Outlet />
         </main>
       </TransitionWrapper>
-      <Navbar />
     </div>
   );
 }
