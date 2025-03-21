@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { transactions } from "@/utils/mockData";
 import { formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { ArrowDown, ArrowUp, Gift, ChevronRight, Tag } from "lucide-react";
+import { ArrowDown, ArrowUp, Gift, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
@@ -71,15 +71,11 @@ export function RecentTransactions() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col items-end gap-1">
-              <span className={`font-semibold ${getTransactionColor(transaction.type)}`}>
+            <div className="flex items-center">
+              <span className={`font-semibold mr-2 ${getTransactionColor(transaction.type)}`}>
                 {formatTransactionAmount(transaction)}
               </span>
-              <div className="flex items-center text-xs text-muted-foreground">
-                <Tag size={12} className="mr-1" />
-                <span>{transaction.description}</span>
-              </div>
-              <ChevronRight size={16} className="text-muted-foreground mt-1" />
+              <ChevronRight size={16} className="text-muted-foreground" />
             </div>
           </Link>
         ))}

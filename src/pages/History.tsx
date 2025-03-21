@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { transactions } from "@/utils/mockData";
 import { formatDate, formatTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { ArrowDown, ArrowUp, Gift, ArrowLeft, ChevronUp, ChevronDown, ShoppingCart, Tag } from "lucide-react";
+import { ArrowDown, ArrowUp, Gift, ArrowLeft, ChevronUp, ChevronDown, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -139,22 +139,14 @@ const History = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-1">
+                <div className="flex items-center space-x-3">
                   <span className={`font-semibold ${getTransactionColor(transaction.type)}`}>
                     {formatTransactionAmount(transaction)}
                   </span>
-                  
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <Tag size={12} className="mr-1" />
-                    <span>{transaction.description}</span>
-                  </div>
-                  
-                  <div className="mt-1">
-                    {expandedTransaction === transaction.id ? 
-                      <ChevronUp size={20} className="text-muted-foreground" /> : 
-                      <ChevronDown size={20} className="text-muted-foreground" />
-                    }
-                  </div>
+                  {expandedTransaction === transaction.id ? 
+                    <ChevronUp size={20} className="text-muted-foreground" /> : 
+                    <ChevronDown size={20} className="text-muted-foreground" />
+                  }
                 </div>
               </div>
               
