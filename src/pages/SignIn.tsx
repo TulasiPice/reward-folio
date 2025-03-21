@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -70,13 +69,6 @@ const SignIn = () => {
               Continue
             </Button>
           </div>
-        </div>
-
-        <div className="text-center text-sm text-textSecondary">
-          Don't have an account?{" "}
-          <Link to="/sign-up" className="font-medium text-primary hover:underline">
-            Sign up
-          </Link>
         </div>
       </div>
     </div>

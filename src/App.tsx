@@ -11,7 +11,6 @@ import Rewards from "./pages/Rewards";
 import History from "./pages/History";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
-import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 
 const queryClient = new QueryClient();
@@ -23,7 +22,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route element={<MainLayout />}>
             <Route path="/" element={<Index />} />
