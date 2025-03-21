@@ -17,7 +17,7 @@ export function MainLayout() {
   return (
     <div className="min-h-screen max-w-md sm:max-w-lg md:max-w-2xl mx-auto">
       <TransitionWrapper>
-        <main className="p-4 sm:p-6">
+        <main className="space-y-6 p-6">
           <Outlet />
         </main>
       </TransitionWrapper>
