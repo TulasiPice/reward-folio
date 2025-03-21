@@ -7,7 +7,7 @@ import { ArrowUpRight, Sparkles, Coins, Wallet } from "lucide-react";
 
 export function PointsCard() {
   return (
-    <Card className="w-full overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-emerald-600 to-emerald dark:from-emerald-700 dark:to-emerald">
+    <Card className="w-full overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-[#0031C2] to-[#0C238B] dark:from-[#0031C2] dark:to-[#0C238B]">
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
