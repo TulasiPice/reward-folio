@@ -70,16 +70,23 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
       <SheetContent side="bottom" className="p-0 h-[100dvh] sm:max-w-full">
         <div className="flex flex-col h-full overflow-hidden">
           <div className="bg-white text-black shadow-sm p-6">
-            <div className="flex items-center mb-2">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="text-black mr-2 -ml-3" 
-                onClick={onClose}
-              >
-                <ArrowLeft />
-              </Button>
-              <h2 className="text-xl font-semibold">Your Wallet</h2>
+            <div className="flex items-center mb-2 justify-between">
+              <div className="flex items-center">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-black mr-2 -ml-3" 
+                  onClick={onClose}
+                >
+                  <ArrowLeft />
+                </Button>
+                <h2 className="text-xl font-semibold">Your Wallet</h2>
+              </div>
+              <Link to="/history" onClick={onClose}>
+                <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
+                  <History className="h-5 w-5" />
+                </Button>
+              </Link>
             </div>
           </div>
           
@@ -90,7 +97,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
             className="w-full flex-1 flex flex-col"
           >
             <div className="px-6 pt-4">
-              <TabsList className="grid w-full grid-cols-3">
+              <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="cash" className="flex items-center gap-2">
                   <Wallet className="h-4 w-4" />
                   Cash
@@ -99,16 +106,8 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   <Coins className="h-4 w-4" />
                   Points
                 </TabsTrigger>
-                <TabsTrigger value="history" className="flex items-center gap-2">
-                  <History className="h-4 w-4" />
-                  History
-                </TabsTrigger>
               </TabsList>
             </div>
-
-            <TabsContent value="history" className="p-6 pt-4 flex-1 overflow-auto">
-              <TransactionsList transactions={transactions.slice(0, 10)} />
-            </TabsContent>
             
             <TabsContent value="cash" className="p-6 pt-4 space-y-6 flex-1 overflow-auto">
               <div className="text-center">
@@ -286,3 +285,4 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     </Sheet>
   );
 }
+
