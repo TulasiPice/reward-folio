@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -281,7 +280,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
               <div className="mt-auto grid grid-cols-2 gap-4">
                 <Button 
                   variant="outline" 
-                  className="w-full"
+                  className="w-full text-orange-500 border-orange-500 hover:bg-orange-50 hover:text-orange-600"
                   onClick={handleRedeem}
                 >
                   <Award className="h-4 w-4 mr-2" />
