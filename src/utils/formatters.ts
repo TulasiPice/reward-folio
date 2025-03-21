@@ -1,5 +1,4 @@
-
-import { format, formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow, isAfter, subYears } from 'date-fns';
 
 // Format points with commas for thousands
 export const formatPoints = (points: number): string => {
@@ -19,8 +18,17 @@ export const formatTime = (dateString: string): string => {
 };
 
 // Format date as relative time (e.g., "2 days ago")
+// For dates older than a year, use a specific date format instead
 export const formatRelativeTime = (dateString: string): string => {
   const date = new Date(dateString);
+  const oneYearAgo = subYears(new Date(), 1);
+  
+  // If date is older than a year, show the actual date
+  if (!isAfter(date, oneYearAgo)) {
+    return format(date, 'MMM d, yyyy');
+  }
+  
+  // Otherwise show relative time
   return formatDistanceToNow(date, { addSuffix: true });
 };
 
