@@ -62,9 +62,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				emerald: {
-					DEFAULT: '#00C28C',
-					dark: '#009974'
+				indigo: {
+					DEFAULT: '#6366F1',
+					dark: '#4F46E5'
 				},
 				coin: '#FFE15D',
 				success: '#3DCC91',
@@ -73,6 +73,7 @@ export default {
 				textPrimary: '#E5E5E5',
 				textSecondary: '#A1A1AA',
 				surface: '#1F1F1F',
+				disabled: '#3A3A3A'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
