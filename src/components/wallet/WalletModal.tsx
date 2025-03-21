@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser } from "@/utils/mockData";
 import { formatPoints } from "@/utils/formatters";
-import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket } from "lucide-react";
+import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { UserAvatar } from "@/components/shared/UserAvatar";
@@ -137,6 +137,19 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     <p className="font-semibold">₹ {formatPoints(cashData.bonus)}</p>
                   </CardContent>
                 </Card>
+              </div>
+
+              {/* Add withdraw button for cash */}
+              <div className="mt-4">
+                <Link to="/withdraw" onClick={onClose} className="w-full">
+                  <Button 
+                    variant="default" 
+                    className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600"
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Withdraw Cash
+                  </Button>
+                </Link>
               </div>
 
               <div className="mt-6">

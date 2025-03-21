@@ -1,73 +1,65 @@
 
-import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useState, useEffect } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ReferralFlow } from "./ReferralFlow";
-import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { ReferralWelcome } from "./ReferralWelcome";
 
-type Product = {
-  id: number;
-  name: string;
-  reward: string;
-  description: string;
-};
-
-// Default product that will be used
-const defaultProduct = {
-  id: 1,
-  name: "Premium Subscription",
-  reward: "500 points",
-  description: "Most popular option with highest rewards"
-};
-
-export function ReferralModal({ 
-  isOpen, 
-  onClose, 
-  initialProduct = null
-}: { 
-  isOpen: boolean; 
+interface ReferralModalProps {
+  isOpen: boolean;
   onClose: () => void;
-  initialProduct?: Product | null;
-}) {
-  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(initialProduct || defaultProduct);
-  const { toast } = useToast();
+  initialProduct?: any;
+}
 
-  const handleShare = (target: string) => {
-    // In a real app, this would handle the actual sharing logic
-    toast({
-      title: "🎉 Invite sent!",
-      description: "You're 1 step closer to earning rewards!",
-      duration: 3000,
-    });
+export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModalProps) {
+  const [selectedProduct, setSelectedProduct] = useState(initialProduct || null);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  // Reset to welcome screen when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      // Small delay to avoid flashing during transition
+      const timer = setTimeout(() => {
+        setShowWelcome(true);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  // If a product is initially selected, skip welcome screen
+  useEffect(() => {
+    if (initialProduct) {
+      setShowWelcome(false);
+    }
+  }, [initialProduct]);
+
+  const handleProductSelect = (product: any) => {
+    setSelectedProduct(product);
+  };
+
+  const handleStart = () => {
+    setShowWelcome(false);
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none" hideCloseButton>
+      <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none">
         <div className="flex flex-col h-full">
           {/* Header section */}
           <div className="bg-background border-b px-6 py-4 flex items-center justify-between">
-            <DialogTitle className="text-xl font-semibold">
-              Invite Friends & Earn Rewards
-            </DialogTitle>
-            <button 
-              className="rounded-full p-1 hover:bg-muted" 
-              onClick={onClose}
-              aria-label="Close"
-            >
+            <h2 className="text-xl font-semibold">Invite Friends & Earn Rewards</h2>
+            <Button variant="ghost" size="icon" onClick={onClose}>
               <X className="h-5 w-5" />
-            </button>
+            </Button>
           </div>
 
-          {/* Content section - taking full remaining height */}
+          {/* Content section */}
           <div className="flex-1 overflow-auto">
-            <div className="p-6">
-              <ReferralFlow 
-                product={selectedProduct} 
-                onShare={handleShare}
-                onBack={onClose}
-              />
-            </div>
+            <ReferralFlow
+              onSelectProduct={handleProductSelect}
+              selectedProduct={selectedProduct}
+            />
           </div>
         </div>
       </DialogContent>
