@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Star } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const products = [
   {
@@ -40,12 +41,12 @@ export function TopProducts({ onSelectProduct }: { onSelectProduct?: (product: a
               key={product.id} 
               className="p-3 rounded-lg border border-border hover:bg-accent/5 transition-colors"
             >
-              <div className="flex justify-between items-start">
+              <div className="flex justify-between items-center">
                 <div>
                   <h3 className="font-medium">{product.name}</h3>
                   <p className="text-xs text-muted-foreground mt-1">{product.description}</p>
                 </div>
-                <span className="text-xs font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full">
+                <span className="text-xs whitespace-nowrap font-medium text-emerald px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-full">
                   {product.reward}
                 </span>
               </div>
