@@ -241,6 +241,24 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 </Card>
               </div>
 
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <Button 
+                  variant="default" 
+                  className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600"
+                  onClick={handleRedeem}
+                >
+                  <Award className="h-4 w-4 mr-2" />
+                  Redeem
+                </Button>
+                
+                <Link to="/send" onClick={onClose} className="w-full">
+                  <Button variant="outline" className="w-full">
+                    <SendHorizontal className="h-4 w-4 mr-2" />
+                    Send
+                  </Button>
+                </Link>
+              </div>
+
               <div className="mt-6">
                 <h3 className="font-medium mb-3 flex items-center gap-2">
                   <Ticket className="h-4 w-4" />
@@ -275,24 +293,6 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     </Card>
                   ))}
                 </div>
-              </div>
-              
-              <div className="mt-auto grid grid-cols-2 gap-4">
-                <Button 
-                  variant="outline" 
-                  className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white hover:from-orange-600 hover:to-amber-600"
-                  onClick={handleRedeem}
-                >
-                  <Award className="h-4 w-4 mr-2" />
-                  Redeem
-                </Button>
-                
-                <Link to="/send" onClick={onClose} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    <SendHorizontal className="h-4 w-4 mr-2" />
-                    Send
-                  </Button>
-                </Link>
               </div>
             </TabsContent>
           </Tabs>
