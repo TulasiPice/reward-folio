@@ -23,16 +23,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Background rays image */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="/lovable-uploads/b814f76d-0b36-40d4-bb49-8ff1bef0ef59.png" 
-          alt="Background" 
-          className="w-full h-full object-cover"
-        />
-      </div>
-
+    <div className="relative min-h-screen w-full bg-white overflow-hidden">
       {showOnboarding ? (
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
           <div className="w-full max-w-md py-8 flex flex-col items-center">
