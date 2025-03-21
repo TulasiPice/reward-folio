@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -141,9 +140,9 @@ const Withdraw = () => {
           <ArrowLeft size={20} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Withdraw Points</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Withdraw Cash</h1>
           <p className="text-muted-foreground">
-            Convert your points to rewards or cash.
+            Convert your cash to rewards or bank transfer.
           </p>
         </div>
       </div>
@@ -169,9 +168,9 @@ const Withdraw = () => {
         <TabsContent value="standard">
           <Card>
             <CardHeader>
-              <CardTitle>Withdraw Your Points</CardTitle>
+              <CardTitle>Withdraw Your Cash</CardTitle>
               <CardDescription>
-                You can withdraw your points to various payment methods.
+                You can withdraw your cash to various payment methods.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -193,12 +192,12 @@ const Withdraw = () => {
                               className="pl-12"
                             />
                             <div className="absolute inset-y-0 left-0 flex items-center px-3 pointer-events-none text-muted-foreground font-medium">
-                              Points:
+                              Cash:
                             </div>
                           </div>
                         </FormControl>
                         <FormDescription>
-                          Your available balance: 3,240 points
+                          Your available balance: ₹3,240
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -239,7 +238,7 @@ const Withdraw = () => {
                           <Input placeholder="Enter your withdrawal address" {...field} />
                         </FormControl>
                         <FormDescription>
-                          Enter the address where you want to receive your points.
+                          Enter the address where you want to receive your cash.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -256,7 +255,7 @@ const Withdraw = () => {
                     ) : (
                       <>
                         <ArrowUp className="mr-2 h-4 w-4" />
-                        Withdraw Points
+                        Withdraw Cash
                       </>
                     )}
                   </Button>
@@ -266,7 +265,7 @@ const Withdraw = () => {
             <CardFooter className="flex flex-col space-y-2 items-start border-t pt-6">
               <div className="text-sm font-medium">Withdrawal policy</div>
               <p className="text-sm text-muted-foreground">
-                Withdrawals are processed within 2-3 business days. Minimum withdrawal amount is 1,000 points.
+                Withdrawals are processed within 2-3 business days. Minimum withdrawal amount is ₹1,000.
               </p>
             </CardFooter>
           </Card>
