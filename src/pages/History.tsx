@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { transactions } from "@/utils/mockData";
 import { formatDate, formatTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { ArrowDown, ArrowUp, Gift, ArrowLeft, ChevronUp, ChevronDown, ShoppingCart } from "lucide-react";
+import { ArrowDown, ArrowUp, Gift, ArrowLeft, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -144,12 +144,6 @@ const History = () => {
                   </span>
                   <div className="mt-1">
                     {getStatusBadge(transaction.type)}
-                  </div>
-                  <div className="mt-1">
-                    {expandedTransaction === transaction.id ? 
-                      <ChevronUp size={20} className="text-muted-foreground" /> : 
-                      <ChevronDown size={20} className="text-muted-foreground" />
-                    }
                   </div>
                 </div>
               </div>
