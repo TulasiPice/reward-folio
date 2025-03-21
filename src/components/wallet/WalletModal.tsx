@@ -5,12 +5,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
-import { currentUser } from "@/utils/mockData";
-import { formatPoints } from "@/utils/formatters";
-import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download } from "lucide-react";
+import { currentUser, transactions } from "@/utils/mockData";
+import { formatPoints, formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
+import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download, History } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { UserAvatar } from "@/components/shared/UserAvatar";
+import { TransactionsList } from "@/components/wallet/TransactionsList";
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -89,7 +90,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
             className="w-full flex-1 flex flex-col"
           >
             <div className="px-6 pt-4">
-              <TabsList className="grid w-full grid-cols-2">
+              <TabsList className="grid w-full grid-cols-3">
                 <TabsTrigger value="cash" className="flex items-center gap-2">
                   <Wallet className="h-4 w-4" />
                   Cash
@@ -98,8 +99,16 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   <Coins className="h-4 w-4" />
                   Points
                 </TabsTrigger>
+                <TabsTrigger value="history" className="flex items-center gap-2">
+                  <History className="h-4 w-4" />
+                  History
+                </TabsTrigger>
               </TabsList>
             </div>
+
+            <TabsContent value="history" className="p-6 pt-4 flex-1 overflow-auto">
+              <TransactionsList transactions={transactions.slice(0, 10)} />
+            </TabsContent>
             
             <TabsContent value="cash" className="p-6 pt-4 space-y-6 flex-1 overflow-auto">
               <div className="text-center">
