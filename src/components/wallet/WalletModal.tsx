@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,11 +7,12 @@ import { Button } from "@/components/ui/button";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser, transactions } from "@/utils/mockData";
 import { formatPoints, formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
-import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download, History } from "lucide-react";
+import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download, History, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
+import { useToast } from "@/hooks/use-toast";
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -20,6 +22,7 @@ interface WalletModalProps {
 export function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const [activeTab, setActiveTab] = useState("cash");
   const isMobile = useIsMobile();
+  const { toast } = useToast();
   
   const cashData = {
     total: currentUser.points,
@@ -33,6 +36,13 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     earned: 950,
     spent: 300,
     bonus: 600
+  };
+
+  const handleRedeem = () => {
+    toast({
+      title: "Points Redeemed!",
+      description: "Your points have been successfully redeemed",
+    });
   };
 
   const vouchers = [
@@ -268,7 +278,16 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 </div>
               </div>
               
-              <div className="mt-auto">
+              <div className="mt-auto grid grid-cols-2 gap-4">
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={handleRedeem}
+                >
+                  <Award className="h-4 w-4 mr-2" />
+                  Redeemed
+                </Button>
+                
                 <Link to="/send" onClick={onClose} className="w-full">
                   <Button variant="outline" className="w-full">
                     <SendHorizontal className="h-4 w-4 mr-2" />
