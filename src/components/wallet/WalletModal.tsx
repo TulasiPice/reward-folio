@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,12 +38,12 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent side="bottom" className="p-0 h-[100dvh] sm:max-w-full">
         <div className="flex flex-col h-full overflow-hidden">
-          <div className="bg-gradient-to-r from-[#0031C2] to-[#0C238B] text-white p-6">
+          <div className="bg-white text-black shadow-sm p-6">
             <div className="flex items-center mb-2">
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="text-white mr-2 -ml-3" 
+                className="text-black mr-2 -ml-3" 
                 onClick={onClose}
               >
                 <ArrowLeft />
