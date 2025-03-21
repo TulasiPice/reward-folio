@@ -1,6 +1,5 @@
 
 import { PointsCard } from "@/components/home/PointsCard";
-import { QuickActions } from "@/components/home/QuickActions";
 import { RecentTransactions } from "@/components/home/RecentTransactions";
 import { TopProducts } from "@/components/home/TopProducts"; 
 import { WeeklyProgress } from "@/components/home/WeeklyProgress";
@@ -31,7 +30,6 @@ const Index = () => {
       <div className="grid gap-6 md:grid-cols-2">
         <PointsCard />
         <div className="flex flex-col justify-between gap-4">
-          <QuickActions />
           <div className="bg-gradient-to-r from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-amber-800/20 p-6 rounded-lg shadow-sm border border-amber-200/50 dark:border-amber-800/30">
             <h3 className="font-medium text-amber-800 dark:text-amber-300 mb-1">Start earning more</h3>
             <p className="text-xs text-amber-700/80 dark:text-amber-300/80 mb-4">Share with friends and earn up to 500 points per referral!</p>
