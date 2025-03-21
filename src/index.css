@@ -5,7 +5,7 @@
 
 @layer base {
   :root {
-    /* New theme based on provided colors */
+    /* Light theme based on provided colors */
     --background: 0 0% 98%; /* #FAFAFA */
     --foreground: 0 0% 13%; /* #212121 */
 
@@ -46,6 +46,46 @@
     --sidebar-ring: 164 100% 38%;
   }
 
+  .dark {
+    /* Dark theme based on provided colors */
+    --background: 0 0% 7%; /* #121212 */
+    --foreground: 0 0% 90%; /* #E5E5E5 */
+
+    --card: 0 0% 12%; /* #1F1F1F */
+    --card-foreground: 0 0% 90%; /* #E5E5E5 */
+
+    --popover: 0 0% 12%; /* #1F1F1F */
+    --popover-foreground: 0 0% 90%; /* #E5E5E5 */
+
+    --primary: 164 100% 38%; /* #00C28C still using the same primary color */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --secondary: 0 0% 16%; /* #2A2A2A */
+    --secondary-foreground: 0 0% 63%; /* #A1A1AA */
+
+    --muted: 0 0% 16%; /* #2A2A2A */
+    --muted-foreground: 0 0% 63%; /* #A1A1AA */
+
+    --accent: 48 100% 68%; /* #FFE15D */
+    --accent-foreground: 0 0% 12%; /* #1F1F1F */
+
+    --destructive: 0 84% 60%; /* #F87171 */
+    --destructive-foreground: 0 0% 98%; /* #FAFAFA */
+
+    --border: 0 0% 16%; /* #2A2A2A */
+    --input: 0 0% 16%; /* #2A2A2A */
+    --ring: 164 100% 38%; /* #00C28C */
+
+    --sidebar-background: 0 0% 10%; /* slightly lighter than background */
+    --sidebar-foreground: 0 0% 63%; /* #A1A1AA */
+    --sidebar-primary: 0 0% 90%; /* #E5E5E5 */
+    --sidebar-primary-foreground: 0 0% 7%; /* #121212 */
+    --sidebar-accent: 0 0% 16%; /* #2A2A2A */
+    --sidebar-accent-foreground: 0 0% 90%; /* #E5E5E5 */
+    --sidebar-border: 0 0% 16%; /* #2A2A2A */
+    --sidebar-ring: 164 100% 38%; /* #00C28C */
+  }
+
   * {
     @apply border-border;
   }
@@ -56,7 +96,7 @@
 
   /* Glassmorphism */
   .glass {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm dark:bg-black/20 dark:border-white/10;
   }
   
   .glass-dark {

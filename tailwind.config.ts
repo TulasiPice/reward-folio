@@ -68,8 +68,11 @@ export default {
 				},
 				coin: '#FFE15D',
 				success: '#3DCC91',
-				warning: '#F59E0B',
-				error: '#EF4444',
+				warning: '#FBBF24',
+				error: '#F87171',
+				textPrimary: '#E5E5E5',
+				textSecondary: '#A1A1AA',
+				surface: '#1F1F1F',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
