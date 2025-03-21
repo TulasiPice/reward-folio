@@ -160,15 +160,6 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   ))}
                 </div>
               </div>
-              
-              <div className="mt-auto">
-                <Link to="/send" onClick={onClose} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    <SendHorizontal className="h-4 w-4 mr-2" />
-                    Send
-                  </Button>
-                </Link>
-              </div>
             </TabsContent>
             
             <TabsContent value="points" className="p-6 pt-4 space-y-6 flex-1 overflow-auto">
