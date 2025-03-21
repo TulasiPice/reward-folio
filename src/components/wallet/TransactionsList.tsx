@@ -38,12 +38,12 @@ export function TransactionsList({ transactions }: TransactionsListProps) {
         <p className="text-sm text-muted-foreground">Your recent activity</p>
       </div>
 
-      <div className="space-y-3">
+      <div className="divide-y divide-border">
         {transactions.map((transaction) => (
           <Link 
             to={`/history?id=${transaction.id}`} 
             key={transaction.id} 
-            className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/50 transition-colors animate-fade-in border border-border"
+            className="flex items-center justify-between p-3 hover:bg-muted/50 transition-colors animate-fade-in"
           >
             <div className="flex items-center space-x-3">
               <div className="flex flex-col">
