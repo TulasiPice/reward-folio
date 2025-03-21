@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
@@ -33,6 +32,7 @@ const OnboardingSlide = ({
 );
 
 const SignUp = () => {
+  // Keep existing state and handler functions
   const [step, setStep] = useState<'start' | 'email' | 'phone' | 'otp'>('start');
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -72,103 +72,92 @@ const SignUp = () => {
     }
   };
 
+  // Only show the splash screen on the start step
+  if (step === 'start') {
+    return (
+      <div className="relative flex flex-col min-h-screen">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/lovable-uploads/c38e8aa4-919e-4362-a0a4-b65be912117f.png" 
+            alt="Food background" 
+            className="w-full h-full object-cover"
+          />
+          {/* Dark overlay for better text visibility */}
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-between min-h-screen p-6">
+          {/* Logo and Navigation options */}
+          <div className="mt-14 text-white">
+            <h1 className="text-5xl font-bold mb-2">Swiggy</h1>
+            <div className="flex items-center space-x-4 mt-5 text-xl">
+              <span className="font-medium">Food</span>
+              <span className="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span className="text-white/80">Instamart</span>
+              <span className="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span className="text-white/80">Dineout</span>
+            </div>
+          </div>
+          
+          {/* Call to action */}
+          <div className="space-y-10 mb-16">
+            <h2 className="text-white text-3xl font-medium leading-snug">
+              Order from top restaurants
+            </h2>
+            
+            <Button 
+              onClick={() => setStep('phone')}
+              className="w-full h-14 text-lg font-medium rounded-xl bg-orange-500 hover:bg-orange-600 border-0"
+            >
+              Get Started
+            </Button>
+            
+            {/* Bottom indicator */}
+            <div className="flex justify-center">
+              <div className="w-16 h-1.5 bg-white/60 rounded-full"></div>
+            </div>
+          </div>
+          
+          {/* Footer logos */}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="w-8 h-8 bg-orange-500 rounded-md flex items-center justify-center mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="white" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <span className="text-white text-lg font-semibold">Swiggy</span>
+            </div>
+            <div className="flex items-center text-white/80 text-sm">
+              <span>curated by</span>
+              <span className="ml-2 font-bold text-white">Mobbin</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render the existing sign-up flow for other steps
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-background">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold tracking-tight text-textPrimary">
-            Turn referrals into real rewards
+            {step === 'email' ? 'Sign up with email' : 
+             step === 'phone' ? 'Sign up with phone' : 
+             'Verify your account'}
           </h1>
           <p className="text-textSecondary">
-            Takes less than 10 seconds to start earning
+            {step === 'email' ? 'We\'ll send a verification code to your email' : 
+             step === 'phone' ? 'We\'ll send a verification code to your phone' : 
+             `Enter the 6-digit code sent to ${email || phone}`}
           </p>
         </div>
 
-        {/* Onboarding Carousel */}
-        <Carousel className="w-full">
-          <CarouselContent>
-            <CarouselItem>
-              <OnboardingSlide 
-                icon={Share2} 
-                title="Refer your network" 
-                subtitle="Products or friends—every share counts." 
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <OnboardingSlide 
-                icon={Coins} 
-                title="Earn cash + coins" 
-                subtitle="Track rewards in real-time." 
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <OnboardingSlide 
-                icon={Wallet} 
-                title="Withdraw anytime" 
-                subtitle="Bank transfer, UPI, or spend in-app." 
-              />
-            </CarouselItem>
-          </CarouselContent>
-          <div className="flex justify-center mt-4">
-            <div className="flex gap-1">
-              {[0, 1, 2].map((_, index) => (
-                <div 
-                  key={index} 
-                  className="w-2 h-2 rounded-full bg-muted transition-all duration-300" 
-                />
-              ))}
-            </div>
-          </div>
-        </Carousel>
-
-        {step === 'start' && (
-          <div className="space-y-4">
-            <Button 
-              onClick={handleGoogleSignUp}
-              variant="outline" 
-              className="w-full justify-between h-12"
-            >
-              <span className="flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" className="mr-2">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                  <path d="M1 1h22v22H1z" fill="none"/>
-                </svg>
-                Continue with Google
-              </span>
-              <ArrowRight size={20} />
-            </Button>
-
-            <div className="relative flex items-center py-2">
-              <div className="flex-grow border-t border-border"></div>
-              <span className="flex-shrink mx-3 text-textSecondary text-sm">or</span>
-              <div className="flex-grow border-t border-border"></div>
-            </div>
-
-            <Button 
-              onClick={handlePhoneSignUp}
-              variant="outline" 
-              className="w-full justify-between h-12"
-            >
-              <span className="flex items-center">
-                <Smartphone size={20} className="mr-2" />
-                Continue with Phone
-              </span>
-              <ArrowRight size={20} />
-            </Button>
-
-            <Button 
-              onClick={handleEmailSignUp}
-              className="w-full h-12 btn-gradient"
-            >
-              <Mail size={20} className="mr-2" />
-              Continue with Email
-            </Button>
-          </div>
-        )}
-
+        {/* Existing auth flow for email/phone/OTP verification */}
         {step === 'email' && (
           <div className="space-y-4">
             <div className="space-y-2">
