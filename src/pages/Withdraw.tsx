@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "@/components/ui/use-toast";
 import { currentUser } from "@/utils/mockData";
@@ -98,104 +97,80 @@ export default function Withdraw() {
         </CardContent>
       </Card>
       
-      <Tabs defaultValue="bank" value={withdrawMethod} onValueChange={setWithdrawMethod}>
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="bank">Bank Transfer</TabsTrigger>
-          <TabsTrigger value="upi">UPI</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="bank">
-          <Card>
-            <CardContent className="pt-6 space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="amount">Amount</Label>
-                <div className="relative">
-                  <span className="absolute left-3 top-2.5">₹</span>
-                  <Input
-                    id="amount"
-                    type="number"
-                    placeholder="0"
-                    className="pl-7"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                </div>
+      <Card>
+        <CardContent className="pt-6 space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="amount">Amount</Label>
+            <div className="relative">
+              <span className="absolute left-3 top-2.5">₹</span>
+              <Input
+                id="amount"
+                type="number"
+                placeholder="0"
+                className="pl-7"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <Label>Withdrawal Method</Label>
+            <RadioGroup value={withdrawMethod} onValueChange={setWithdrawMethod} className="flex flex-col space-y-3">
+              <div className="flex items-center space-x-3 rounded-lg border p-4">
+                <RadioGroupItem value="bank" id="bank" />
+                <Label htmlFor="bank" className="flex-1 cursor-pointer font-medium">Bank Transfer</Label>
+                <span className="text-xs text-muted-foreground">1-2 days</span>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="bank-account">Bank Account Number</Label>
-                <Input
-                  id="bank-account"
-                  placeholder="Enter your bank account number"
-                  value={bankAccount}
-                  onChange={(e) => setBankAccount(e.target.value)}
-                />
+              <div className="flex items-center space-x-3 rounded-lg border p-4">
+                <RadioGroupItem value="upi" id="upi" />
+                <Label htmlFor="upi" className="flex-1 cursor-pointer font-medium">UPI</Label>
+                <span className="text-xs text-muted-foreground">Instant</span>
               </div>
-              
+            </RadioGroup>
+          </div>
+          
+          {withdrawMethod === "bank" ? (
+            <div className="space-y-2">
+              <Label htmlFor="bank-account">Bank Account Number</Label>
+              <Input
+                id="bank-account"
+                placeholder="Enter your bank account number"
+                value={bankAccount}
+                onChange={(e) => setBankAccount(e.target.value)}
+              />
               <div className="flex items-center p-3 bg-amber-50 text-amber-800 rounded-lg">
                 <AlertCircle className="h-4 w-4 mr-2 flex-shrink-0" />
                 <span className="text-sm">Bank transfers typically take 1-2 business days to process</span>
               </div>
-            </CardContent>
-            
-            <CardFooter>
-              <Button 
-                className="w-full" 
-                onClick={handleWithdraw}
-                disabled={processing}
-              >
-                {processing ? "Processing..." : "Withdraw to Bank"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-        
-        <TabsContent value="upi">
-          <Card>
-            <CardContent className="pt-6 space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="upi-amount">Amount</Label>
-                <div className="relative">
-                  <span className="absolute left-3 top-2.5">₹</span>
-                  <Input
-                    id="upi-amount"
-                    type="number"
-                    placeholder="0"
-                    className="pl-7"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="upi-id">UPI ID</Label>
-                <Input
-                  id="upi-id"
-                  placeholder="username@bank"
-                  value={upiId}
-                  onChange={(e) => setUpiId(e.target.value)}
-                />
-              </div>
-              
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <Label htmlFor="upi-id">UPI ID</Label>
+              <Input
+                id="upi-id"
+                placeholder="username@bank"
+                value={upiId}
+                onChange={(e) => setUpiId(e.target.value)}
+              />
               <div className="flex items-center p-3 bg-emerald-50 text-emerald-800 rounded-lg">
                 <AlertCircle className="h-4 w-4 mr-2 flex-shrink-0" />
                 <span className="text-sm">UPI transfers are typically processed instantly</span>
               </div>
-            </CardContent>
-            
-            <CardFooter>
-              <Button 
-                className="w-full" 
-                onClick={handleWithdraw}
-                disabled={processing}
-              >
-                {processing ? "Processing..." : "Withdraw to UPI"}
-              </Button>
-            </CardFooter>
-          </Card>
-        </TabsContent>
-      </Tabs>
+            </div>
+          )}
+        </CardContent>
+        
+        <CardFooter>
+          <Button 
+            className="w-full"
+            onClick={handleWithdraw} 
+            disabled={processing}
+          >
+            {processing ? "Processing..." : "Withdraw Money"}
+          </Button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
