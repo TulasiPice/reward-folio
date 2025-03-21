@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -37,7 +36,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const vouchers = [
     {
       id: 'v1',
-      title: 'Coffee Break',
+      title: 'Zomato',
       value: '₹15',
       expiryDate: '2023-12-31',
       isNew: true,
@@ -45,7 +44,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     },
     {
       id: 'v2',
-      title: 'Lunch Voucher',
+      title: 'Swiggy',
       value: '₹25',
       expiryDate: '2023-11-30',
       isNew: false,
