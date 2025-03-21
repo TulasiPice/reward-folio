@@ -1,9 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "@/components/ui/use-toast";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { ArrowLeft } from "lucide-react";
@@ -13,12 +13,15 @@ import { useState } from "react";
 export default function Send() {
   const [amount, setAmount] = useState("");
   const [recipient, setRecipient] = useState("");
-  const [note, setNote] = useState("");
   
   const recentContacts = [
     { id: 1, name: "Alex Smith", avatar: "" },
     { id: 2, name: "Jamie Williams", avatar: "" },
     { id: 3, name: "Taylor Johnson", avatar: "" },
+    { id: 4, name: "Morgan Lee", avatar: "" },
+    { id: 5, name: "Jordan Brown", avatar: "" },
+    { id: 6, name: "Casey Davis", avatar: "" },
+    { id: 7, name: "Riley Wilson", avatar: "" },
   ];
 
   const handleSend = () => {
@@ -39,11 +42,10 @@ export default function Send() {
     // Reset form
     setAmount("");
     setRecipient("");
-    setNote("");
   };
 
   return (
-    <div className="container max-w-md mx-auto py-6">
+    <div className="py-6">
       <div className="mb-6">
         <Link to="/" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted">
           <ArrowLeft className="h-4 w-4" />
@@ -82,30 +84,22 @@ export default function Send() {
           </div>
           
           <div className="space-y-2">
-            <Label>Recent Contacts</Label>
-            <div className="flex overflow-x-auto pb-2 gap-2">
-              {recentContacts.map((contact) => (
-                <Button 
-                  key={contact.id}
-                  variant="outline"
-                  className="flex items-center gap-2 whitespace-nowrap"
-                  onClick={() => setRecipient(contact.name)}
-                >
-                  <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
-                  <span>{contact.name}</span>
-                </Button>
-              ))}
-            </div>
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="note">Add a note (optional)</Label>
-            <Textarea
-              id="note"
-              placeholder="What's this for?"
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-            />
+            <Label>Contacts</Label>
+            <ScrollArea className="h-32 w-full rounded-md border">
+              <div className="p-4 space-y-2">
+                {recentContacts.map((contact) => (
+                  <Button 
+                    key={contact.id}
+                    variant="outline"
+                    className="flex items-center justify-start gap-2 w-full"
+                    onClick={() => setRecipient(contact.name)}
+                  >
+                    <UserAvatar name={contact.name} src={contact.avatar} size="sm" />
+                    <span>{contact.name}</span>
+                  </Button>
+                ))}
+              </div>
+            </ScrollArea>
           </div>
         </CardContent>
         <CardFooter>
