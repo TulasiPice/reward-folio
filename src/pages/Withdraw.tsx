@@ -1,9 +1,8 @@
-
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { ArrowLeft, ArrowUp, Calendar, Check, Clock, CreditCard, Info, Timer, Wallet, User, Building, BankIcon } from "lucide-react";
+import { ArrowLeft, ArrowUp, Calendar, Check, Clock, CreditCard, Info, Timer, Wallet, User, Building } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -111,12 +110,6 @@ const Withdraw = () => {
         <Link to="/" className="p-2 rounded-full hover:bg-muted transition-colors">
           <ArrowLeft size={20} />
         </Link>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Withdraw Cash</h1>
-          <p className="text-muted-foreground">
-            <Wallet className="inline mr-1 h-4 w-4" /> Convert your cash to rewards or bank transfer.
-          </p>
-        </div>
       </div>
       
       <Card>
