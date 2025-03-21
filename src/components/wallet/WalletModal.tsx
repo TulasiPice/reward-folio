@@ -77,7 +77,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 <div className="text-3xl font-bold">
                   <AnimatedNumber 
                     value={cashData.total} 
-                    prefix="★ " 
+                    prefix={<img src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" alt="Wallet" className="inline-block h-5 w-5 mr-1" />}
                     duration={1500}
                   />
                 </div>

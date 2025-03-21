@@ -1,19 +1,19 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactNode } from "react";
 import { formatPoints } from "@/utils/formatters";
 
 interface AnimatedNumberProps {
   value: number;
   className?: string;
   duration?: number;
-  prefix?: string;
+  prefix?: ReactNode;
 }
 
 export function AnimatedNumber({ 
   value, 
   className = "", 
   duration = 1000,
-  prefix = ""
+  prefix
 }: AnimatedNumberProps) {
   const [displayValue, setDisplayValue] = useState(0);
   
