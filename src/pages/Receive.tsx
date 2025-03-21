@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,7 +14,6 @@ export default function Receive() {
   const [note, setNote] = useState("");
   const [paymentLink, setPaymentLink] = useState("https://pay.example.com/u/user123");
   
-  // Update payment link when amount or note changes
   const updatePaymentLink = () => {
     let link = "https://pay.example.com/u/user123";
     if (amount) {
@@ -29,7 +27,6 @@ export default function Receive() {
     setPaymentLink(link);
   };
   
-  // Update payment link whenever amount or note changes
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(e.target.value);
     setTimeout(updatePaymentLink, 100);
@@ -40,7 +37,6 @@ export default function Receive() {
     setTimeout(updatePaymentLink, 100);
   };
 
-  // Share payment link (only works on supported devices)
   const shareLink = async () => {
     if (navigator.share) {
       try {
@@ -58,9 +54,8 @@ export default function Receive() {
   return (
     <div className="container max-w-md mx-auto py-6">
       <div className="mb-6">
-        <Link to="/" className="flex items-center text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          <span>Back to Home</span>
+        <Link to="/" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted">
+          <ArrowLeft className="h-4 w-4" />
         </Link>
       </div>
       

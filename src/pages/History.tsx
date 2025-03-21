@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
@@ -43,9 +44,8 @@ export default function History() {
   return (
     <div className="container max-w-md mx-auto py-6">
       <div className="mb-6">
-        <Link to="/" className="flex items-center text-muted-foreground hover:text-foreground">
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          <span>Back to Home</span>
+        <Link to="/" className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-muted">
+          <ArrowLeft className="h-4 w-4" />
         </Link>
       </div>
       
