@@ -2,9 +2,35 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
-import { ArrowRight, Mail, Smartphone } from "lucide-react";
+import { ArrowRight, Coins, HandHeart, Mail, Share2, Smartphone, Wallet } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
+
+// Onboarding slide component
+const OnboardingSlide = ({ 
+  icon: Icon, 
+  title, 
+  subtitle 
+}: { 
+  icon: React.ElementType; 
+  title: string; 
+  subtitle: string;
+}) => (
+  <div className="flex flex-col items-center justify-center p-6 text-center space-y-3">
+    <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-2">
+      <Icon size={36} className="text-primary" />
+    </div>
+    <h3 className="text-xl font-bold tracking-tight text-textPrimary">{title}</h3>
+    <p className="text-sm text-textSecondary">{subtitle}</p>
+  </div>
+);
 
 const SignUp = () => {
   const [step, setStep] = useState<'start' | 'email' | 'phone' | 'otp'>('start');
@@ -57,6 +83,43 @@ const SignUp = () => {
             Takes less than 10 seconds to start earning
           </p>
         </div>
+
+        {/* Onboarding Carousel */}
+        <Carousel className="w-full">
+          <CarouselContent>
+            <CarouselItem>
+              <OnboardingSlide 
+                icon={Share2} 
+                title="Refer your network" 
+                subtitle="Products or friends—every share counts." 
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <OnboardingSlide 
+                icon={Coins} 
+                title="Earn cash + coins" 
+                subtitle="Track rewards in real-time." 
+              />
+            </CarouselItem>
+            <CarouselItem>
+              <OnboardingSlide 
+                icon={Wallet} 
+                title="Withdraw anytime" 
+                subtitle="Bank transfer, UPI, or spend in-app." 
+              />
+            </CarouselItem>
+          </CarouselContent>
+          <div className="flex justify-center mt-4">
+            <div className="flex gap-1">
+              {[0, 1, 2].map((_, index) => (
+                <div 
+                  key={index} 
+                  className="w-2 h-2 rounded-full bg-muted transition-all duration-300" 
+                />
+              ))}
+            </div>
+          </div>
+        </Carousel>
 
         {step === 'start' && (
           <div className="space-y-4">
