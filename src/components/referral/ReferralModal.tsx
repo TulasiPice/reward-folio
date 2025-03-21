@@ -1,10 +1,9 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ReferralFlow } from "./ReferralFlow";
 import { useToast } from "@/hooks/use-toast";
-import { X, Sparkle } from "lucide-react";
-import { ReferralWelcome } from "./ReferralWelcome";
+import { X } from "lucide-react";
 
 type Product = {
   id: number;
@@ -13,7 +12,7 @@ type Product = {
   description: string;
 };
 
-// Default product that will be used since we're removing product selection
+// Default product that will be used
 const defaultProduct = {
   id: 1,
   name: "Premium Subscription",
@@ -30,8 +29,7 @@ export function ReferralModal({
   onClose: () => void;
   initialProduct?: Product | null;
 }) {
-  const [showWelcome, setShowWelcome] = useState(true);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(initialProduct || defaultProduct);
+  const [selectedProduct, setSelectedProduct] = React.useState<Product | null>(initialProduct || defaultProduct);
   const { toast } = useToast();
 
   const handleShare = (target: string) => {
@@ -43,10 +41,6 @@ export function ReferralModal({
     });
   };
 
-  const handleStartReferring = () => {
-    setShowWelcome(false);
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-full w-full h-[100dvh] sm:h-[100dvh] md:h-[100dvh] p-0 m-0 rounded-none">
@@ -54,7 +48,7 @@ export function ReferralModal({
           {/* Header section */}
           <div className="bg-background border-b px-6 py-4 flex items-center justify-between">
             <DialogTitle className="text-xl font-semibold">
-              {showWelcome ? "Welcome" : "Invite Friends & Earn Rewards"}
+              Invite Friends & Earn Rewards
             </DialogTitle>
             <button 
               className="rounded-full p-1 hover:bg-muted" 
@@ -67,17 +61,13 @@ export function ReferralModal({
 
           {/* Content section - taking full remaining height */}
           <div className="flex-1 overflow-auto">
-            {showWelcome ? (
-              <ReferralWelcome onStart={handleStartReferring} />
-            ) : (
-              <div className="p-6">
-                <ReferralFlow 
-                  product={selectedProduct} 
-                  onShare={handleShare}
-                  onBack={onClose} // Changed to directly close the modal since there's no "back" anymore
-                />
-              </div>
-            )}
+            <div className="p-6">
+              <ReferralFlow 
+                product={selectedProduct} 
+                onShare={handleShare}
+                onBack={onClose}
+              />
+            </div>
           </div>
         </div>
       </DialogContent>
