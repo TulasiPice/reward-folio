@@ -22,17 +22,19 @@ const Index = () => {
 
   return (
     <div className="space-y-6">
-      {/* Welcome message - now outside the box */}
-      <h2 className="text-xl font-semibold">Welcome back, Alex 👋</h2>
+      {/* Welcome message with avatar - now outside the box */}
+      <div className="flex items-center gap-4">
+        <UserAvatar 
+          src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" 
+          name="Alex Thompson" 
+          size="lg"
+        />
+        <h2 className="text-xl font-semibold">Welcome back, Alex 👋</h2>
+      </div>
       
       {/* User Profile Section */}
       <section className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm">
         <div className="flex items-center gap-4">
-          <UserAvatar 
-            src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" 
-            name="Alex Thompson" 
-            size="lg"
-          />
           <div className="flex-1">
             <h3 className="text-lg font-semibold">Alex Thompson</h3>
             <div className="flex items-center gap-2">
