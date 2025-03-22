@@ -1,3 +1,4 @@
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
@@ -5,13 +6,30 @@ import { VoucherList } from "@/components/vouchers/VoucherList";
 import { VoucherCard } from "@/components/vouchers/VoucherCard";
 import { Button } from "@/components/ui/button"; 
 import { ArrowLeft, Wallet as WalletIcon, History, ArrowRightLeft, Ticket, Share2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useVouchers } from "@/hooks/use-vouchers";
 import { currentUser } from "@/utils/mockData";
+import { useEffect, useState } from "react";
 
 const Wallet = () => {
   // Get vouchers from hook
   const { vouchers } = useVouchers();
+  
+  // Get location to access URL parameters
+  const location = useLocation();
+  
+  // State for active tab
+  const [activeTab, setActiveTab] = useState<string>("cash");
+  
+  // Parse the URL query parameter for tab selection
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tabParam = searchParams.get('tab');
+    
+    if (tabParam && (tabParam === 'cash' || tabParam === 'points')) {
+      setActiveTab(tabParam);
+    }
+  }, [location.search]);
   
   // Filter vouchers by category
   const cashVouchers = vouchers.filter(v => 
@@ -43,7 +61,7 @@ const Wallet = () => {
         </Link>
       </div>
       
-      <Tabs defaultValue="cash" className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="cash">Cash</TabsTrigger>
           <TabsTrigger value="points">Points</TabsTrigger>

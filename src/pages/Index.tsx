@@ -25,6 +25,11 @@ const Index = () => {
   // For demo purposes, assume the user is Gold tier
   const userTier = "Gold" as const;
 
+  // Handle navigation to wallet with specific tab
+  const navigateToWallet = (tab: 'cash' | 'points') => {
+    navigate(`/wallet?tab=${tab}`);
+  };
+
   return (
     <div className="space-y-6 pb-10">
       {/* Enhanced Welcome Card with Progress */}
@@ -61,7 +66,10 @@ const Index = () => {
 
       {/* Key Metrics Cards */}
       <section className="grid grid-cols-2 gap-4">
-        <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 shadow-sm hover:shadow-md transition-all">
+        <Card 
+          className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 shadow-sm hover:shadow-md transition-all cursor-pointer"
+          onClick={() => navigateToWallet('cash')}
+        >
           <CardContent className="p-4">
             <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-2">
@@ -75,7 +83,10 @@ const Index = () => {
           </CardContent>
         </Card>
         
-        <Card className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 shadow-sm hover:shadow-md transition-all">
+        <Card 
+          className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 shadow-sm hover:shadow-md transition-all cursor-pointer"
+          onClick={() => navigateToWallet('points')}
+        >
           <CardContent className="p-4">
             <div className="flex flex-col space-y-2">
               <div className="flex items-center space-x-2">
