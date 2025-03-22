@@ -29,3 +29,11 @@ export type Reward = {
   available: boolean;
   category: string;
 };
+
+export type Referral = {
+  id: string;
+  name: string;
+  date: string;
+  status: 'Pending' | 'Completed' | 'Rewarded';
+  amount?: number;
+};

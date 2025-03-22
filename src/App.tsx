@@ -13,6 +13,7 @@ import Redeem from "./pages/Redeem";
 import History from "./pages/History";
 import Wallet from "./pages/Wallet";
 import Referral from "./pages/Referral";
+import ReferralTracking from "./pages/ReferralTracking";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/history" element={<History />} />
             <Route path="/wallet" element={<Wallet />} />
             <Route path="/referral" element={<Referral />} />
+            <Route path="/referral/tracking" element={<ReferralTracking />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -38,6 +38,10 @@ const Referral = () => {
     navigate("/"); // Navigate to Index page
   };
 
+  const handleTrackReferrals = () => {
+    navigate("/referral/tracking");
+  };
+
   return (
     <div className="container max-w-md mx-auto pb-24 pt-6 px-4 space-y-6">
       <div className="flex items-center gap-2 mb-2">
@@ -102,7 +106,7 @@ const Referral = () => {
         <Button 
           size="lg" 
           className="rounded-full shadow-lg bg-indigo-600 hover:bg-indigo-700"
-          onClick={() => navigate('/referral')}
+          onClick={handleTrackReferrals}
         >
           <BarChart3 className="mr-2 h-4 w-4" />
           Track Referrals
