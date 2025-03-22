@@ -1,18 +1,10 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { RewardsMilestoneTracker } from "@/components/rewards/RewardsMilestoneTracker";
-import { FeatureCard } from "@/components/shared/FeatureCard";
 import { ExclusiveBenefits } from "@/components/rewards/ExclusiveBenefits";
-import { useState } from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
-import { Award, Gift, PiggyBank, Share } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Index = () => {
-  const [isPointsSheetOpen, setIsPointsSheetOpen] = useState(false);
-  
   return (
     <div className="space-y-6">
       {/* User Profile Section */}
@@ -77,55 +69,8 @@ const Index = () => {
         </Card>
       </div>
 
-      {/* Redeem Button */}
-      <Button 
-        onClick={() => setIsPointsSheetOpen(true)}
-        className="w-full py-6 text-base"
-      >
-        Redeem Points
-      </Button>
-
       {/* Benefits Section */}
       <ExclusiveBenefits />
-      
-      {/* Redeem Points Sheet */}
-      <Sheet open={isPointsSheetOpen} onOpenChange={setIsPointsSheetOpen}>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Redeem Your Points</SheetTitle>
-          </SheetHeader>
-          <div className="space-y-4 mt-6">
-            <Link to="/redeem" onClick={() => setIsPointsSheetOpen(false)}>
-              <FeatureCard 
-                icon={<Gift className="h-5 w-5" />}
-                emoji="🎁"
-                title="Get Vouchers"
-                description="Exchange coins for brand discounts"
-              />
-            </Link>
-            
-            <Link to="/withdraw" onClick={() => setIsPointsSheetOpen(false)}>
-              <FeatureCard 
-                icon={<PiggyBank className="h-5 w-5" />}
-                emoji="💸"
-                title="Withdraw Cash"
-                description="Transfer rewards to your wallet"
-              />
-            </Link>
-            
-            <FeatureCard 
-              icon={<Share className="h-5 w-5" />}
-              emoji="🔗"
-              title="Invite & Earn More"
-              description="Refer friends and earn bonus"
-              onClick={() => {
-                setIsPointsSheetOpen(false);
-                // This would open the referral modal in a real app
-              }}
-            />
-          </div>
-        </SheetContent>
-      </Sheet>
     </div>
   );
 };
