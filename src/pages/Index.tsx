@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { currentUser } from "@/utils/mockData";
 import { ReferralStats } from "@/components/referral/ReferralStats";
 import { referralStats } from "@/utils/mockData";
-import { Wallet, Gift, User, ArrowRight } from "lucide-react";
+import { Wallet, Gift, User, ArrowRight, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { RecentTransactions } from "@/components/home/RecentTransactions";
 import { WeeklyProgress } from "@/components/home/WeeklyProgress";
@@ -90,26 +90,39 @@ const Index = () => {
         </Card>
       </section>
 
-      {/* Referral Stats Section */}
-      <section className="mt-6">
-        <div className="flex justify-between items-center mb-3">
-          <h2 className="text-lg font-semibold">Your Referrals</h2>
-          <Button 
-            variant="link" 
-            className="p-0 h-auto flex items-center text-sm"
-            onClick={() => navigate('/referral/tracking')}
-          >
-            View all <ArrowRight size={16} className="ml-1" />
-          </Button>
+      {/* Referrals Section - Highlighted with a distinguished design */}
+      <section className="mt-6 rounded-xl overflow-hidden">
+        <div className="bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-3">
+          <h2 className="text-lg font-semibold text-white flex items-center">
+            <Users size={20} className="mr-2" />
+            Your Referral Program
+          </h2>
         </div>
-        <ReferralStats 
-          referrals={referralStats.referralCount} 
-          totalEarned={`₹${referralStats.totalEarned}`}
-        />
+        
+        <div className="bg-gradient-to-b from-purple-50 to-white dark:from-purple-950/20 dark:to-slate-900/40 p-4 border border-purple-100 dark:border-purple-900/30 rounded-b-xl">
+          {/* Referral Stats */}
+          <ReferralStats 
+            referrals={referralStats.referralCount} 
+            totalEarned={`₹${referralStats.totalEarned}`}
+          />
+          
+          {/* Invite Card */}
+          <div className="mt-4">
+            <InviteEarnCard />
+          </div>
+          
+          {/* View Details Link */}
+          <div className="mt-3 text-right">
+            <Button 
+              variant="link" 
+              className="p-0 h-auto flex items-center text-sm ml-auto text-indigo-600 dark:text-indigo-400"
+              onClick={() => navigate('/referral/tracking')}
+            >
+              View all referrals <ArrowRight size={16} className="ml-1" />
+            </Button>
+          </div>
+        </div>
       </section>
-
-      {/* Invite & Earn Card */}
-      <InviteEarnCard />
 
       {/* Recent Transactions */}
       <RecentTransactions />
