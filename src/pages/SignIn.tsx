@@ -3,23 +3,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   const handleStartEarning = () => {
-    setShowOnboarding(false);
+    // Navigate to index page instead of showing sign in form
+    navigate('/');
   };
 
   const handleGoogleSignIn = () => {
     console.log("Sign in with Google");
     // Integration with Google auth would go here
+    navigate('/');
   };
 
   const handleEmailSignIn = () => {
     console.log("Sign in with email", email);
     // Handle email signin logic
+    navigate('/');
   };
 
   return (
