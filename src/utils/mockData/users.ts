@@ -3,8 +3,8 @@ import { User } from '@/types/data-types';
 
 export const currentUser: User = {
   id: '1',
-  name: 'Alex Thompson',
-  email: 'alex@example.com',
+  name: 'Ramesh',
+  email: 'ramesh@example.com',
   avatar: 'https://i.pravatar.cc/150?img=68',
   points: 3850
 };
