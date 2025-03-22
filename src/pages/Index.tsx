@@ -11,7 +11,6 @@ import { ReferralStats } from "@/components/referral/ReferralStats";
 import { referralStats } from "@/utils/mockData";
 import { Wallet, Gift, User, ArrowRight, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { RecentTransactions } from "@/components/home/RecentTransactions";
 import { WeeklyProgress } from "@/components/home/WeeklyProgress";
 import { TopProducts } from "@/components/home/TopProducts";
 import { Leaderboard } from "@/components/home/Leaderboard";
@@ -145,9 +144,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Recent Transactions */}
-      <RecentTransactions />
       
       {/* Weekly Progress & Leaderboard - Desktop Layout */}
       <div className="hidden sm:grid sm:grid-cols-2 gap-4 mt-6">
