@@ -47,7 +47,7 @@ const Index = () => {
           
           <TierBadge 
             tier={userTier} 
-            className="mt-2 px-4 py-1"
+            className="mt-2 px-4 py-1 rounded-full"
           />
           
           {/* Progress Milestone Tracker integrated into welcome card */}

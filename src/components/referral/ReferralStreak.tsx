@@ -31,7 +31,8 @@ export const ReferralStreak = ({ streak }: ReferralStreakProps) => {
       {streak >= 3 && (
         <div className="mt-4 flex justify-center">
           <Badge
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-1.5"
+            variant="gradient"
+            className="bg-gradient-to-b from-[#FFD700] to-[#ECC700] text-[#7A4E00] px-4 py-1.5"
           >
             Bonus +₹100
           </Badge>

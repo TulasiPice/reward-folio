@@ -12,17 +12,17 @@ const tierConfig = {
   Silver: {
     color: "#C0C0C0",
     icon: "🥈",
-    className: "bg-white text-[#333333]"
+    className: "bg-gradient-to-r from-[#C0C0C0] to-[#E5E4E2] text-[#333333]"
   },
   Gold: {
     color: "#FFD700",
     icon: "🥇",
-    className: "bg-white text-[#0A1B78]"
+    className: "bg-gradient-to-b from-[#FFD700] to-[#ECC700] text-[#7A4E00]"
   },
   Platinum: {
     color: "#E5E4E2",
     icon: "👑",
-    className: "bg-white text-[#333333]"
+    className: "bg-gradient-to-r from-[#E5E4E2] to-[#BDBDBD] text-[#333333]"
   }
 };
 
@@ -32,7 +32,7 @@ export function TierBadge({ tier, className }: TierProps) {
   return (
     <Badge 
       className={cn(
-        "font-semibold text-sm py-1 px-2", 
+        "font-semibold text-sm py-1 px-2 border-none", 
         config.className,
         className
       )}
