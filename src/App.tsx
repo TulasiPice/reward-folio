@@ -14,6 +14,7 @@ import Redeem from "./pages/Redeem";
 import VoucherSuccess from "./pages/VoucherSuccess";
 import History from "./pages/History";
 import Profile from "./pages/Profile";
+import Wallet from "./pages/Wallet";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/voucher-success" element={<VoucherSuccess />} />
             <Route path="/history" element={<History />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/wallet" element={<Wallet />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

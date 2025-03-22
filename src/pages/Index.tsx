@@ -9,7 +9,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate("/profile"); // Navigate to profile page which can act as wallet page
+    navigate("/wallet"); // Navigate to wallet page instead of profile
   };
 
   return (
