@@ -6,6 +6,7 @@ import { ExclusiveBenefits } from "@/components/rewards/ExclusiveBenefits";
 import { useNavigate } from "react-router-dom";
 import { FeatureCard } from "@/components/shared/FeatureCard";
 import { TierBadge } from "@/components/shared/TierBadge";
+import { InviteEarnCard } from "@/components/referral/InviteEarnCard";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -70,6 +71,9 @@ const Index = () => {
           className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40"
         />
       </div>
+
+      {/* Invite & Earn Card */}
+      <InviteEarnCard />
 
       {/* Benefits Section */}
       <ExclusiveBenefits />
