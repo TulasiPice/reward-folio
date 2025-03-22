@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { ReferralStats } from "@/components/referral/ReferralStats";
 import { ReferralStreak } from "@/components/referral/ReferralStreak";
 import { RewardsMilestoneTracker } from "@/components/rewards/RewardsMilestoneTracker";
-import { ReferralCode } from "@/components/referral/ReferralCode";
 import { HowToRefer } from "@/components/referral/HowToRefer";
 import { SocialSharing } from "@/components/referral/SocialSharing";
 import { ContactsDrawer } from "@/components/referral/ContactsDrawer";
@@ -62,9 +61,6 @@ const Referral = () => {
       {/* Share with Contacts Section - moved to position 2 */}
       <ContactsDrawer onShareContact={handleShareContact} />
 
-      {/* Referral Code Section */}
-      <ReferralCode code={referralCode} />
-
       {/* Combined Milestone and Streak Section */}
       <Card>
         <CardHeader className="pb-2">
@@ -99,7 +95,7 @@ const Referral = () => {
       </Card>
 
       {/* Social Media Sharing Section - now includes code */}
-      <SocialSharing onShare={handleShareSocial} />
+      <SocialSharing onShare={handleShareSocial} code={referralCode} />
 
       {/* Floating Button */}
       <div className="fixed bottom-20 right-4 z-10">
