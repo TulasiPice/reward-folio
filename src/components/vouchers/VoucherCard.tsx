@@ -80,7 +80,7 @@ export function VoucherCard({ voucher, userPoints }: VoucherCardProps) {
           ) : canAfford ? (
             <>
               <Ticket className="w-4 h-4 mr-2" />
-              Redeem Voucher
+              Redeem Points
             </>
           ) : (
             <>Not Enough Points</>

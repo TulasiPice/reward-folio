@@ -8,7 +8,7 @@ export function Navbar() {
   const navigationItems = [
     { path: "/", icon: Home, label: "Home" },
     { path: "/send", icon: Send, label: "Send" },
-    { path: "/redeem", icon: Ticket, label: "Redeem" },
+    { path: "/redeem", icon: Ticket, label: "Redeem Points" },
     { path: "/rewards", icon: Gift, label: "Rewards" },
     { path: "/history", icon: Clock, label: "History" },
     { path: "/profile", icon: User, label: "Profile" }

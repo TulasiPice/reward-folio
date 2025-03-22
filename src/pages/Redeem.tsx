@@ -36,7 +36,7 @@ const Redeem = () => {
           <ArrowLeft size={20} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Redeem Vouchers</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Redeem Points</h1>
           <p className="text-muted-foreground">
             You have <span className="font-medium text-foreground">{formatPoints(currentUser.points)}</span> points to spend.
           </p>
