@@ -8,16 +8,17 @@ import { useNavigate } from "react-router-dom";
 export const InviteEarnCard = () => {
   const navigate = useNavigate();
   
-  const handleInviteClick = () => {
+  const handleInviteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent the card's onClick from also firing
     navigate('/referral');
   };
   
   return (
     <Card 
-      className="bg-[#F0F4FF] text-[#1E293B] rounded-xl shadow-md hover:shadow-lg transition-shadow"
+      className="bg-[#F0F4FF] text-[#1E293B] rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer"
       onClick={() => navigate('/referral')}
     >
-      <CardContent className="p-4 cursor-pointer">
+      <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div>
             <h3 className="font-semibold text-lg">Invite & Earn 💸</h3>
