@@ -5,12 +5,19 @@ import { RewardsMilestoneTracker } from "@/components/rewards/RewardsMilestoneTr
 import { ExclusiveBenefits } from "@/components/rewards/ExclusiveBenefits";
 import { useNavigate } from "react-router-dom";
 import { FeatureCard } from "@/components/shared/FeatureCard";
+import { TierBadge } from "@/components/shared/TierBadge";
 
 const Index = () => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     navigate("/wallet");
+  };
+
+  // For demo purposes, assume the user is Gold tier
+  const user = {
+    name: "Alex Thompson",
+    tier: "Gold" as const
   };
 
   return (
@@ -26,7 +33,10 @@ const Index = () => {
           />
           <div className="flex-1">
             <h3 className="text-lg font-semibold">Alex Thompson</h3>
-            <p className="text-sm text-muted-foreground">Platinum Member since Dec 2024</p>
+            <div className="flex items-center gap-2">
+              <p className="text-sm text-muted-foreground">Member since Dec 2024</p>
+              <TierBadge tier={user.tier} />
+            </div>
           </div>
           <button className="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
             ✨
