@@ -22,9 +22,11 @@ const Index = () => {
 
   return (
     <div className="space-y-6">
+      {/* Welcome message - now outside the box */}
+      <h2 className="text-xl font-semibold">Welcome back, Alex 👋</h2>
+      
       {/* User Profile Section */}
       <section className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm">
-        <h2 className="text-xl font-semibold mb-4">Welcome back, Alex 👋</h2>
         <div className="flex items-center gap-4">
           <UserAvatar 
             src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" 
