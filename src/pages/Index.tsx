@@ -27,7 +27,7 @@ const Index = () => {
         <h2 className="text-2xl font-bold mb-4">Welcome Alex,</h2>
         <div className="flex flex-col items-center gap-4">
           <UserAvatar 
-            src="/lovable-uploads/77fc3f70-671f-4305-9a0d-45f3bd28e80f.png" 
+            src="/lovable-uploads/15dafaa2-0ec0-4fcb-8136-772a5ea1dac1.png" 
             name={user.name} 
             size="xl"
             shape="hexagon"
