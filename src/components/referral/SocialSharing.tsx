@@ -1,7 +1,10 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Check, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { 
   WhatsappIcon, 
   TelegramIcon, 
@@ -21,15 +24,43 @@ const socialPlatforms = [
 
 interface SocialSharingProps {
   onShare: (platform: string) => void;
+  code?: string;
 }
 
-export const SocialSharing = ({ onShare }: SocialSharingProps) => {
+export const SocialSharing = ({ onShare, code = "REWARD50" }: SocialSharingProps) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyCode = () => {
+    navigator.clipboard.writeText(code);
+    setCopied(true);
+    toast.success("Referral code copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-lg">Or Share via Social Media</CardTitle>
+        <CardTitle className="text-lg">Share via Social Media</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
+        {/* Referral Code */}
+        <div className="flex space-x-2 mb-2">
+          <Input 
+            value={code} 
+            readOnly 
+            className="font-mono text-center text-lg font-bold"
+          />
+          <Button 
+            size="icon" 
+            onClick={handleCopyCode}
+            variant="outline"
+            className="flex-shrink-0"
+          >
+            {copied ? <Check className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+          </Button>
+        </div>
+
+        {/* Social Media Icons */}
         <div className="grid grid-cols-5 gap-2">
           {socialPlatforms.map((platform) => (
             <Button

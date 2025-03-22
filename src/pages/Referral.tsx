@@ -59,43 +59,46 @@ const Referral = () => {
       {/* How to Refer Section as Collapsible Card */}
       <HowToRefer isOpen={isHowToOpen} onOpenChange={setIsHowToOpen} />
 
+      {/* Share with Contacts Section - moved to position 2 */}
+      <ContactsDrawer onShareContact={handleShareContact} />
+
       {/* Referral Code Section */}
       <ReferralCode code={referralCode} />
 
-      {/* Referral Milestone Section */}
+      {/* Combined Milestone and Streak Section */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Referral Milestone</CardTitle>
+          <CardTitle className="text-lg">Referral Progress</CardTitle>
         </CardHeader>
-        <CardContent>
-          <RewardsMilestoneTracker 
-            milestones={[
-              { label: "Silver", value: "5", achieved: referrals >= 5 },
-              { label: "Gold", value: "10", achieved: referrals >= 10 },
-              { label: "Platinum", value: "20", achieved: referrals >= 20 }
-            ]} 
-            currentValue={referrals.toString()}
-          />
-          <p className="text-xs text-center mt-4 text-muted-foreground">
-            Refer {20 - referrals} more to unlock Platinum rewards 👑
-          </p>
+        <CardContent className="space-y-6">
+          {/* Milestone Tracker */}
+          <div>
+            <h3 className="text-sm font-medium mb-2">Milestone Rewards</h3>
+            <RewardsMilestoneTracker 
+              milestones={[
+                { label: "Silver", value: "5", achieved: referrals >= 5 },
+                { label: "Gold", value: "10", achieved: referrals >= 10 },
+                { label: "Platinum", value: "20", achieved: referrals >= 20 }
+              ]} 
+              currentValue={referrals.toString()}
+            />
+            <p className="text-xs text-center mt-2 text-muted-foreground">
+              Refer {20 - referrals} more to unlock Platinum rewards 👑
+            </p>
+          </div>
+          
+          {/* Divider */}
+          <div className="border-t border-border" />
+          
+          {/* Streak Tracker */}
+          <div>
+            <h3 className="text-sm font-medium mb-2">Daily Streak 🔥</h3>
+            <ReferralStreak streak={streak} />
+          </div>
         </CardContent>
       </Card>
 
-      {/* Referral Streak Section */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-lg">Referral Streak 🔥</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ReferralStreak streak={streak} />
-        </CardContent>
-      </Card>
-
-      {/* Share with Contacts Section - now a button that opens a drawer */}
-      <ContactsDrawer onShareContact={handleShareContact} />
-
-      {/* Social Media Sharing Section */}
+      {/* Social Media Sharing Section - now includes code */}
       <SocialSharing onShare={handleShareSocial} />
 
       {/* Floating Button */}
