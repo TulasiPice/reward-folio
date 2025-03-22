@@ -133,12 +133,14 @@ const Wallet = () => {
               </div>
               
               <div className="grid grid-cols-2 gap-4 mt-4">
-                <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
-                  <CardContent className="flex flex-col items-center justify-center p-4 h-24">
-                    <span className="text-xl mb-2">🎁</span>
-                    <p className="font-medium">Redeem</p>
-                  </CardContent>
-                </Card>
+                <Link to="/redeem">
+                  <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
+                    <CardContent className="flex flex-col items-center justify-center p-4 h-24">
+                      <span className="text-xl mb-2">🎁</span>
+                      <p className="font-medium">Redeem</p>
+                    </CardContent>
+                  </Card>
+                </Link>
                 
                 <Link to="/send">
                   <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer h-full">
