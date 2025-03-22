@@ -8,15 +8,15 @@ import { currentUser } from "@/utils/mockData";
 import { formatPoints } from "@/utils/formatters";
 import { VoucherList } from "@/components/vouchers/VoucherList";
 import { VoucherCard } from "@/components/vouchers/VoucherCard";
-import { useToast } from "sonner";
+import { toast } from "sonner";
+import { useVouchers } from "@/hooks/use-vouchers";
 
 const Redeem = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const toast = useToast();
   
-  // Get vouchers from mockData
-  const { vouchers } = useVouchers();
+  // Get vouchers from hook
+  const { vouchers, isLoading, error } = useVouchers();
   
   // Get unique categories
   const categories = Array.from(new Set(vouchers.map(voucher => voucher.category)));
