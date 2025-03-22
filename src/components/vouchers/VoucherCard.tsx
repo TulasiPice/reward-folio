@@ -4,9 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Voucher } from "@/types/voucher";
 import { formatPoints } from "@/utils/formatters";
-import { toast } from "sonner";
 import { useState } from "react";
-import { Ticket, Tag, Check } from "lucide-react";
+import { Ticket, Tag } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -16,10 +16,10 @@ interface VoucherCardProps {
 export function VoucherCard({ voucher, userPoints }: VoucherCardProps) {
   const [isRedeeming, setIsRedeeming] = useState(false);
   const canAfford = userPoints >= voucher.pointsCost;
+  const navigate = useNavigate();
   
   const handleRedeem = () => {
     if (!canAfford) {
-      toast.error("Not enough points to redeem this voucher");
       return;
     }
     
@@ -27,7 +27,8 @@ export function VoucherCard({ voucher, userPoints }: VoucherCardProps) {
     
     // Simulate API call
     setTimeout(() => {
-      toast.success(`Successfully redeemed: ${voucher.title}`);
+      // Navigate to success page instead of showing toast
+      navigate("/voucher-success", { state: { voucher } });
       setIsRedeeming(false);
     }, 1000);
   };

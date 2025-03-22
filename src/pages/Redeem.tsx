@@ -8,7 +8,6 @@ import { currentUser } from "@/utils/mockData";
 import { formatPoints } from "@/utils/formatters";
 import { VoucherList } from "@/components/vouchers/VoucherList";
 import { VoucherCard } from "@/components/vouchers/VoucherCard";
-import { toast } from "sonner";
 import { useVouchers } from "@/hooks/use-vouchers";
 
 const Redeem = () => {
