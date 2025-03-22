@@ -22,15 +22,21 @@ const Index = () => {
 
   return (
     <div className="space-y-6">
-      {/* Welcome message with avatar - now outside the box */}
-      <div className="flex items-center gap-4">
-        <UserAvatar 
-          src="/lovable-uploads/77fc3f70-671f-4305-9a0d-45f3bd28e80f.png" 
-          name="Alex Thompson" 
-          size="lg"
-          shape="hexagon"
-        />
-        <h2 className="text-xl font-semibold">Welcome back, Alex 👋</h2>
+      {/* Welcome section with vertical alignment similar to the image */}
+      <div className="flex flex-col items-center mb-8 bg-[#001858] text-white p-6 rounded-xl">
+        <h2 className="text-2xl font-bold mb-4">Welcome Alex,</h2>
+        <div className="flex flex-col items-center gap-4">
+          <UserAvatar 
+            src="/lovable-uploads/77fc3f70-671f-4305-9a0d-45f3bd28e80f.png" 
+            name={user.name} 
+            size="xl"
+            shape="hexagon"
+          />
+          <TierBadge 
+            tier={user.tier} 
+            className="px-6 py-2 text-sm rounded-full bg-white"
+          />
+        </div>
       </div>
       
       {/* User Profile Section */}
