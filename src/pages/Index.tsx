@@ -7,7 +7,6 @@ import { TierBadge } from "@/components/shared/TierBadge";
 import { InviteEarnCard } from "@/components/referral/InviteEarnCard";
 import { Button } from "@/components/ui/button";
 import { currentUser } from "@/utils/mockData";
-import { QuickActions } from "@/components/home/QuickActions";
 import { ReferralStats } from "@/components/referral/ReferralStats";
 import { referralStats } from "@/utils/mockData";
 import { Wallet, Gift, User, ArrowRight } from "lucide-react";
@@ -28,7 +27,7 @@ const Index = () => {
 
   return (
     <div className="space-y-6 pb-10">
-      {/* Welcome Header Section */}
+      {/* Enhanced Welcome Card with Progress */}
       <div className="bg-gradient-to-r from-[#0A1B78] to-[#1E3A8A] text-white p-6 -mx-4 -mt-4 rounded-b-3xl shadow-md">
         <div className="flex flex-col items-center text-center space-y-4">
           <h1 className="text-2xl font-bold">Welcome, {firstName}</h1>
@@ -41,13 +40,24 @@ const Index = () => {
             tier={userTier} 
             className="mt-2 px-4 py-1"
           />
+          
+          {/* Progress Milestone Tracker integrated into welcome card */}
+          <div className="w-full mt-4 p-4 bg-white/10 rounded-xl backdrop-blur-sm">
+            <h3 className="text-sm font-medium text-white/90 mb-2">Your Progress</h3>
+            <RewardsMilestoneTracker 
+              milestones={[
+                { label: "Member", value: "₹2,000", achieved: true },
+                { label: "Gold", value: "₹5,000", achieved: true },
+                { label: "Platinum", value: "₹10,000", achieved: false }
+              ]}
+              currentValue="₹7,500"
+            />
+            <p className="text-xs text-white/70 mt-2">
+              You're ₹2,500 away from unlocking Platinum perks 🎁
+            </p>
+          </div>
         </div>
       </div>
-
-      {/* Quick Actions Section */}
-      <section>
-        <QuickActions />
-      </section>
 
       {/* Key Metrics Cards */}
       <section className="grid grid-cols-2 gap-4">
@@ -100,22 +110,6 @@ const Index = () => {
 
       {/* Invite & Earn Card */}
       <InviteEarnCard />
-
-      {/* Progress Milestone Tracker */}
-      <section className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm">
-        <h2 className="text-lg font-semibold mb-4">Your Progress</h2>
-        <RewardsMilestoneTracker 
-          milestones={[
-            { label: "Member", value: "₹2,000", achieved: true },
-            { label: "Gold", value: "₹5,000", achieved: true },
-            { label: "Platinum", value: "₹10,000", achieved: false }
-          ]}
-          currentValue="₹7,500"
-        />
-        <p className="text-sm text-muted-foreground mt-3">
-          You're ₹2,500 away from unlocking Platinum perks 🎁
-        </p>
-      </section>
 
       {/* Recent Transactions */}
       <RecentTransactions />
