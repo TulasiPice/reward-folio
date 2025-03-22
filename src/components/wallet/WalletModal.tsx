@@ -7,11 +7,10 @@ import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { currentUser, transactions } from "@/utils/mockData";
 import { formatPoints, formatRelativeTime, getTransactionColor, formatTransactionAmount } from "@/utils/formatters";
 import { Wallet, Coins, SendHorizontal, ArrowUp, ArrowDown, Gift, ArrowLeft, Ticket, Download, History, Award } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { UserAvatar } from "@/components/shared/UserAvatar";
 import { TransactionsList } from "@/components/wallet/TransactionsList";
-import { useToast } from "@/hooks/use-toast";
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -21,7 +20,7 @@ interface WalletModalProps {
 export function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const [activeTab, setActiveTab] = useState("cash");
   const isMobile = useIsMobile();
-  const { toast } = useToast();
+  const navigate = useNavigate();
   
   const cashData = {
     total: currentUser.points,
@@ -38,10 +37,8 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
   };
 
   const handleRedeem = () => {
-    toast({
-      title: "Points Redeemed!",
-      description: "Your points have been successfully redeemed",
-    });
+    onClose();
+    navigate('/redeem');
   };
 
   const vouchers = [
@@ -248,7 +245,7 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   onClick={handleRedeem}
                 >
                   <Award className="h-4 w-4 mr-2" />
-                  Redeem
+                  Redeem Points
                 </Button>
                 
                 <Link to="/send" onClick={onClose} className="w-full">
