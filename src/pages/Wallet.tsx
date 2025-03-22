@@ -1,4 +1,3 @@
-
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
@@ -47,9 +46,6 @@ const Wallet = () => {
           </Link>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Wallet</h1>
-            <p className="text-muted-foreground">
-              Manage your cash and points
-            </p>
           </div>
         </div>
         
