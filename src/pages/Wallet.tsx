@@ -5,7 +5,7 @@ import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { VoucherList } from "@/components/vouchers/VoucherList";
 import { VoucherCard } from "@/components/vouchers/VoucherCard";
 import { Button } from "@/components/ui/button"; 
-import { ArrowLeft, Wallet, History, ArrowRightLeft, Ticket } from "lucide-react";
+import { ArrowLeft, Wallet as WalletIcon, History, ArrowRightLeft, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useVouchers } from "@/hooks/use-vouchers";
 import { currentUser } from "@/utils/mockData";
@@ -71,9 +71,9 @@ const Wallet = () => {
                 <Link to="/withdraw">
                   <Button 
                     variant="outline" 
-                    className="w-full h-12 justify-start border border-border bg-muted/40 hover:bg-muted/60 transition-colors"
+                    className="w-full h-10 justify-start border border-border bg-muted/40 hover:bg-muted/60 transition-colors"
                   >
-                    <Wallet className="mr-2 h-5 w-5" />
+                    <WalletIcon className="mr-2 h-5 w-5" />
                     Withdraw to Bank Account
                   </Button>
                 </Link>
