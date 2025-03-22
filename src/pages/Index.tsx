@@ -4,12 +4,13 @@ import { UserAvatar } from "@/components/shared/UserAvatar";
 import { RewardsMilestoneTracker } from "@/components/rewards/RewardsMilestoneTracker";
 import { ExclusiveBenefits } from "@/components/rewards/ExclusiveBenefits";
 import { useNavigate } from "react-router-dom";
+import { FeatureCard } from "@/components/shared/FeatureCard";
 
 const Index = () => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate("/wallet"); // Navigate to wallet page instead of profile
+    navigate("/wallet");
   };
 
   return (
@@ -49,37 +50,23 @@ const Index = () => {
         </p>
       </section>
 
-      {/* Cards Group */}
+      {/* Cards Group - Using FeatureCard for better clickability */}
       <div className="grid grid-cols-2 gap-4">
-        <Card 
-          className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40 border-none shadow cursor-pointer hover:shadow-md transition-all"
+        <FeatureCard 
+          emoji="💵"
+          title="Cash"
+          description="₹3,850"
           onClick={handleCardClick}
-        >
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-xl">
-              💵
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Cash</p>
-              <p className="text-xl font-bold">₹3,850</p>
-            </div>
-          </CardContent>
-        </Card>
+          className="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40"
+        />
 
-        <Card 
-          className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40 border-none shadow cursor-pointer hover:shadow-md transition-all"
+        <FeatureCard 
+          emoji="🎯"
+          title="Points"
+          description="1,250"
           onClick={handleCardClick}
-        >
-          <CardContent className="p-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-xl">
-              🎯
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Points</p>
-              <p className="text-xl font-bold">1,250</p>
-            </div>
-          </CardContent>
-        </Card>
+          className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/40 dark:to-orange-950/40"
+        />
       </div>
 
       {/* Benefits Section */}
