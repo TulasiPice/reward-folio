@@ -5,8 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Voucher } from "@/types/voucher";
 import { formatPoints } from "@/utils/formatters";
 import { useState } from "react";
-import { Ticket, Tag } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Check, Ticket, Tag } from "lucide-react";
+import { toast } from "sonner";
 
 interface VoucherCardProps {
   voucher: Voucher;
@@ -16,7 +16,6 @@ interface VoucherCardProps {
 export function VoucherCard({ voucher, userPoints }: VoucherCardProps) {
   const [isRedeeming, setIsRedeeming] = useState(false);
   const canAfford = userPoints >= voucher.pointsCost;
-  const navigate = useNavigate();
   
   const handleRedeem = () => {
     if (!canAfford) {
@@ -27,8 +26,31 @@ export function VoucherCard({ voucher, userPoints }: VoucherCardProps) {
     
     // Simulate API call
     setTimeout(() => {
-      // Navigate to success page instead of showing toast
-      navigate("/voucher-success", { state: { voucher } });
+      // Show success toast instead of navigating
+      toast.success(
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2">
+            <div className="bg-green-100 rounded-full p-1">
+              <Check className="h-4 w-4 text-green-600" />
+            </div>
+            <span className="font-medium">Redemption Successful!</span>
+          </div>
+          <p>You've successfully redeemed: <span className="font-medium">{voucher.title}</span></p>
+          {voucher.expiresAt && (
+            <p className="text-xs text-muted-foreground">
+              Expires: {new Date(voucher.expiresAt).toLocaleDateString()}
+            </p>
+          )}
+        </div>,
+        {
+          duration: 5000,
+          id: `voucher-${voucher.id}`,
+          action: {
+            label: "View details",
+            onClick: () => console.log("View voucher details", voucher),
+          },
+        }
+      );
       setIsRedeeming(false);
     }, 1000);
   };
