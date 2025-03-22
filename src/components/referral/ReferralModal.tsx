@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogClose } from "@/components/ui/dialog";
 import { ReferralFlow } from "./ReferralFlow";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
@@ -34,9 +34,11 @@ export function ReferralModal({ isOpen, onClose, initialProduct }: ReferralModal
           {/* Header section */}
           <div className="bg-background border-b px-6 py-4 flex items-center justify-between">
             <h2 className="text-xl font-semibold">Invite Friends & Earn Rewards</h2>
-            <Button variant="ghost" size="icon" onClick={onClose}>
-              <X className="h-5 w-5" />
-            </Button>
+            <DialogClose asChild>
+              <Button variant="ghost" size="icon">
+                <X className="h-5 w-5" />
+              </Button>
+            </DialogClose>
           </div>
 
           {/* Content section */}
