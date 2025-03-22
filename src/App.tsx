@@ -13,6 +13,7 @@ import Redeem from "./pages/Redeem";
 import VoucherSuccess from "./pages/VoucherSuccess";
 import History from "./pages/History";
 import Wallet from "./pages/Wallet";
+import Referral from "./pages/Referral";
 import NotFound from "./pages/NotFound";
 import SignIn from "./pages/SignIn";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/voucher-success" element={<VoucherSuccess />} />
             <Route path="/history" element={<History />} />
             <Route path="/wallet" element={<Wallet />} />
+            <Route path="/referral" element={<Referral />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
