@@ -38,22 +38,6 @@ const Index = () => {
           />
         </div>
       </div>
-      
-      {/* User Profile Section */}
-      <section className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm">
-        <div className="flex items-center gap-4">
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold">Alex Thompson</h3>
-            <div className="flex items-center gap-2">
-              <p className="text-sm text-muted-foreground">Member since Dec 2024</p>
-              <TierBadge tier={user.tier} />
-            </div>
-          </div>
-          <button className="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
-            ✨
-          </button>
-        </div>
-      </section>
 
       {/* Progress Section */}
       <section className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm">
