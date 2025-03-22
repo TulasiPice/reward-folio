@@ -10,6 +10,7 @@ import Send from "./pages/Send";
 import Receive from "./pages/Receive";
 import Withdraw from "./pages/Withdraw";
 import Rewards from "./pages/Rewards";
+import Redeem from "./pages/Redeem";
 import History from "./pages/History";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/receive" element={<Receive />} />
             <Route path="/withdraw" element={<Withdraw />} />
             <Route path="/rewards" element={<Rewards />} />
+            <Route path="/redeem" element={<Redeem />} />
             <Route path="/history" element={<History />} />
             <Route path="/profile" element={<Profile />} />
           </Route>

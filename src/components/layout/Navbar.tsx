@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from "react-router-dom";
-import { Home, Send, Gift, Clock, User } from "lucide-react";
+import { Home, Send, Gift, Clock, User, Ticket } from "lucide-react";
 
 export function Navbar() {
   const location = useLocation();
@@ -8,6 +8,7 @@ export function Navbar() {
   const navigationItems = [
     { path: "/", icon: Home, label: "Home" },
     { path: "/send", icon: Send, label: "Send" },
+    { path: "/redeem", icon: Ticket, label: "Redeem" },
     { path: "/rewards", icon: Gift, label: "Rewards" },
     { path: "/history", icon: Clock, label: "History" },
     { path: "/profile", icon: User, label: "Profile" }
