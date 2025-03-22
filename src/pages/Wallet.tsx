@@ -1,4 +1,3 @@
-
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
@@ -52,18 +51,11 @@ const Wallet = () => {
                 </p>
               </div>
               
-              <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="grid grid-cols-1 gap-4 mt-4">
                 <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
                   <CardContent className="flex flex-col items-center justify-center p-4 h-24">
                     <span className="text-xl mb-2">💸</span>
                     <p className="font-medium">Withdraw</p>
-                  </CardContent>
-                </Card>
-                
-                <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
-                  <CardContent className="flex flex-col items-center justify-center p-4 h-24">
-                    <span className="text-xl mb-2">↗️</span>
-                    <p className="font-medium">Send</p>
                   </CardContent>
                 </Card>
               </div>
