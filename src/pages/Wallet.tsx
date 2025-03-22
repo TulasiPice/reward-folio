@@ -1,31 +1,47 @@
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
-import { TransactionsList } from "@/components/wallet/TransactionsList";
-import { transactions } from "@/utils/mockData";
-import { ArrowLeft } from "lucide-react";
+import { VoucherList } from "@/components/vouchers/VoucherList";
+import { VoucherCard } from "@/components/vouchers/VoucherCard";
+import { Button } from "@/components/ui/button"; 
+import { ArrowLeft, Wallet, History, ArrowRightLeft, Ticket } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useVouchers } from "@/hooks/use-vouchers";
+import { currentUser } from "@/utils/mockData";
 
 const Wallet = () => {
-  // Filter transactions by type
-  const cashTransactions = transactions.filter(t => 
-    t.type === 'sent' || t.type === 'received');
+  // Get vouchers from hook
+  const { vouchers } = useVouchers();
   
-  const pointsTransactions = transactions.filter(t => 
-    t.type === 'reward');
+  // Filter vouchers by category
+  const cashVouchers = vouchers.filter(v => 
+    v.category === 'Shopping' || v.category === 'Food');
+  
+  const pointsVouchers = vouchers.filter(v => 
+    v.category === 'Entertainment' || v.category === 'Travel');
   
   return (
     <div className="space-y-6">
-      <div className="flex items-center space-x-4">
-        <Link to="/" className="p-2 rounded-full hover:bg-muted transition-colors">
-          <ArrowLeft size={20} />
-        </Link>
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Wallet</h1>
-          <p className="text-muted-foreground">
-            Manage your cash and points
-          </p>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <Link to="/" className="p-2 rounded-full hover:bg-muted transition-colors">
+            <ArrowLeft size={20} />
+          </Link>
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">Wallet</h1>
+            <p className="text-muted-foreground">
+              Manage your cash and points
+            </p>
+          </div>
         </div>
+        
+        <Link to="/history">
+          <Button variant="outline" size="sm">
+            <History className="mr-2 h-4 w-4" />
+            History
+          </Button>
+        </Link>
       </div>
       
       <Tabs defaultValue="cash" className="w-full">
@@ -52,22 +68,36 @@ const Wallet = () => {
               </div>
               
               <div className="grid grid-cols-1 gap-4 mt-4">
-                <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
-                  <CardContent className="flex flex-col items-center justify-center p-4 h-24">
-                    <span className="text-xl mb-2">💸</span>
-                    <p className="font-medium">Withdraw</p>
-                  </CardContent>
-                </Card>
+                <Link to="/withdraw">
+                  <Button 
+                    variant="outline" 
+                    className="w-full h-12 justify-start border border-border bg-muted/40 hover:bg-muted/60 transition-colors"
+                  >
+                    <Wallet className="mr-2 h-5 w-5" />
+                    Withdraw to Bank Account
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>
           
           <Card className="border-none shadow">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-medium">Recent Cash Transactions</CardTitle>
+            <CardHeader className="pb-2 flex items-center justify-between">
+              <CardTitle className="text-lg font-medium">Recommended Vouchers</CardTitle>
+              <Link to="/redeem" className="text-sm text-primary hover:underline">
+                View all
+              </Link>
             </CardHeader>
             <CardContent>
-              <TransactionsList transactions={cashTransactions} />
+              <VoucherList>
+                {cashVouchers.slice(0, 2).map(voucher => (
+                  <VoucherCard 
+                    key={voucher.id} 
+                    voucher={voucher} 
+                    userPoints={currentUser.points}
+                  />
+                ))}
+              </VoucherList>
             </CardContent>
           </Card>
         </TabsContent>
@@ -98,7 +128,7 @@ const Wallet = () => {
                 
                 <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
                   <CardContent className="flex flex-col items-center justify-center p-4 h-24">
-                    <span className="text-xl mb-2">🔄</span>
+                    <ArrowRightLeft className="h-6 w-6 mb-2" />
                     <p className="font-medium">Convert</p>
                   </CardContent>
                 </Card>
@@ -107,11 +137,22 @@ const Wallet = () => {
           </Card>
           
           <Card className="border-none shadow">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg font-medium">Recent Points Activity</CardTitle>
+            <CardHeader className="pb-2 flex items-center justify-between">
+              <CardTitle className="text-lg font-medium">Popular Point Vouchers</CardTitle>
+              <Link to="/redeem" className="text-sm text-primary hover:underline">
+                View all
+              </Link>
             </CardHeader>
             <CardContent>
-              <TransactionsList transactions={pointsTransactions} />
+              <VoucherList>
+                {pointsVouchers.slice(0, 2).map(voucher => (
+                  <VoucherCard 
+                    key={voucher.id} 
+                    voucher={voucher} 
+                    userPoints={currentUser.points}
+                  />
+                ))}
+              </VoucherList>
             </CardContent>
           </Card>
         </TabsContent>
