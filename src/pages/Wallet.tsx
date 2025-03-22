@@ -1,11 +1,10 @@
-
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { AnimatedNumber } from "@/components/shared/AnimatedNumber";
 import { VoucherList } from "@/components/vouchers/VoucherList";
 import { VoucherCard } from "@/components/vouchers/VoucherCard";
 import { Button } from "@/components/ui/button"; 
-import { ArrowLeft, Wallet as WalletIcon, History, ArrowRightLeft, Ticket } from "lucide-react";
+import { ArrowLeft, Wallet as WalletIcon, History, ArrowRightLeft, Ticket, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useVouchers } from "@/hooks/use-vouchers";
 import { currentUser } from "@/utils/mockData";
@@ -126,12 +125,14 @@ const Wallet = () => {
                   </CardContent>
                 </Card>
                 
-                <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer">
-                  <CardContent className="flex flex-col items-center justify-center p-4 h-24">
-                    <ArrowRightLeft className="h-6 w-6 mb-2" />
-                    <p className="font-medium">Convert</p>
-                  </CardContent>
-                </Card>
+                <Link to="/send">
+                  <Card className="border border-border bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer h-full">
+                    <CardContent className="flex flex-col items-center justify-center p-4 h-24">
+                      <Share2 className="h-6 w-6 mb-2" />
+                      <p className="font-medium">Share Points</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               </div>
             </CardContent>
           </Card>
