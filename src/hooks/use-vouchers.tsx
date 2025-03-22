@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Voucher } from '@/types/voucher';
-import { vouchers as mockVouchers } from '@/utils/mockData';
+import { vouchers as mockVouchers } from '@/utils/mockData/vouchers';
 
 export function useVouchers() {
   const [vouchers, setVouchers] = useState<Voucher[]>(mockVouchers);
