@@ -7,8 +7,9 @@ import { RewardsMilestoneTracker } from "@/components/rewards/RewardsMilestoneTr
 import { ReferralStreak } from "@/components/referral/ReferralStreak";
 import { ReferralStats } from "@/components/referral/ReferralStats";
 import { toast } from "sonner";
-import { Share, ArrowRight, BarChart3 } from "lucide-react";
+import { Share, ArrowRight, BarChart3, ArrowLeft, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 // Mock data for demonstration purposes
 const mockUserContacts = [
@@ -40,6 +41,7 @@ const Referral = () => {
   // User referral stats - would come from your API in a real app
   const [referrals] = useState(7);
   const [streak] = useState(2);
+  const [isHowToOpen, setIsHowToOpen] = useState(false);
 
   const handleShareContact = (contactPhone: string) => {
     // In a real app, this would handle sharing via the specific contact
@@ -53,31 +55,51 @@ const Referral = () => {
     toast.success(`Shared on ${platform}!`);
   };
 
-  // This would be triggered by a real-time notification in a real app
-  const simulateReferralCompleted = () => {
-    toast.success("🎉 Rahul just joined using your link! +₹50 added!", {
-      duration: 5000,
-      className: "bg-emerald-50 text-emerald-800 border-emerald-200"
-    });
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
     <div className="container max-w-md mx-auto pb-24 pt-6 px-4 space-y-6">
-      <h1 className="text-2xl font-bold mb-6">Refer & Earn</h1>
+      <div className="flex items-center gap-2 mb-2">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={handleBack}
+          className="h-8 w-8"
+        >
+          <ArrowLeft className="h-4 w-4" />
+        </Button>
+        <h1 className="text-2xl font-bold">Refer & Earn</h1>
+      </div>
 
-      {/* How to Refer Section */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-lg">How to Refer</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2 pl-5 list-disc text-sm text-muted-foreground">
-            <li>Share your referral link with friends</li>
-            <li>They sign up and start using the app</li>
-            <li>You earn rewards instantly 🎉</li>
-          </ul>
-        </CardContent>
-      </Card>
+      {/* Stats Display at the top */}
+      <ReferralStats referrals={referrals} totalEarned="₹350" />
+
+      {/* How to Refer Section as Collapsible Card */}
+      <Collapsible
+        open={isHowToOpen}
+        onOpenChange={setIsHowToOpen}
+        className="w-full"
+      >
+        <Card>
+          <CollapsibleTrigger asChild>
+            <CardHeader className="pb-2 cursor-pointer flex flex-row items-center justify-between">
+              <CardTitle className="text-lg">How to Refer</CardTitle>
+              <ChevronDown className={`h-4 w-4 transition-transform ${isHowToOpen ? 'transform rotate-180' : ''}`} />
+            </CardHeader>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <CardContent>
+              <ul className="space-y-2 pl-5 list-disc text-sm text-muted-foreground">
+                <li>Share your referral link with friends</li>
+                <li>They sign up and start using the app</li>
+                <li>You earn rewards instantly 🎉</li>
+              </ul>
+            </CardContent>
+          </CollapsibleContent>
+        </Card>
+      </Collapsible>
 
       {/* Referral Milestone Section */}
       <Card>
@@ -167,29 +189,15 @@ const Referral = () => {
         </CardContent>
       </Card>
 
-      {/* Stats Display */}
-      <ReferralStats referrals={referrals} totalEarned="₹350" />
-
       {/* Floating Button */}
       <div className="fixed bottom-20 right-4 z-10">
         <Button 
           size="lg" 
           className="rounded-full shadow-lg bg-indigo-600 hover:bg-indigo-700"
-          onClick={() => navigate('/referral-tracking')}
+          onClick={() => navigate('/referral')}
         >
           <BarChart3 className="mr-2 h-4 w-4" />
           Track Referrals
-        </Button>
-      </div>
-
-      {/* Demo button to simulate real-time referral notification */}
-      <div className="fixed bottom-4 left-4 z-10">
-        <Button 
-          variant="outline" 
-          size="sm" 
-          onClick={simulateReferralCompleted}
-        >
-          Simulate Referral
         </Button>
       </div>
     </div>
