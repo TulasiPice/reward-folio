@@ -32,7 +32,7 @@ export const ReferralStreak = ({ streak }: ReferralStreakProps) => {
         <div className="mt-4 flex justify-center">
           <Badge
             variant="gradient"
-            className="bg-gradient-to-b from-[#FFD700] to-[#ECC700] text-[#7A4E00] px-4 py-1.5"
+            className="bg-gradient-to-b from-[#FFD700] to-[#ECC700] text-[#FFA500] px-4 py-1.5"
           >
             Bonus +₹100
           </Badge>
