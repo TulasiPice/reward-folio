@@ -25,9 +25,10 @@ const Index = () => {
       {/* Welcome message with avatar - now outside the box */}
       <div className="flex items-center gap-4">
         <UserAvatar 
-          src="/lovable-uploads/58c3d019-b55e-4248-a5fa-60c07763399c.png" 
+          src="/lovable-uploads/77fc3f70-671f-4305-9a0d-45f3bd28e80f.png" 
           name="Alex Thompson" 
           size="lg"
+          shape="hexagon"
         />
         <h2 className="text-xl font-semibold">Welcome back, Alex 👋</h2>
       </div>

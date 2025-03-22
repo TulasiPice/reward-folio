@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -143,5 +144,15 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }: { addUtilities: Function }) {
+			const newUtilities = {
+				'.clip-path-hexagon': {
+					clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)'
+				},
+			}
+			addUtilities(newUtilities)
+		}
+	],
 } satisfies Config;
