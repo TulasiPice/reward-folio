@@ -17,7 +17,7 @@ const tierConfig = {
   Gold: {
     color: "#FFD700",
     icon: "🥇",
-    className: "bg-white text-[#001858]"
+    className: "bg-white text-[#0A1B78]"
   },
   Platinum: {
     color: "#E5E4E2",

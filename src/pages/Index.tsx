@@ -23,18 +23,15 @@ const Index = () => {
   return (
     <div className="space-y-6">
       {/* Welcome section with vertical alignment similar to the image */}
-      <div className="flex flex-col items-center mb-8 bg-[#001858] text-white p-6 rounded-xl">
-        <h2 className="text-2xl font-bold mb-4">Welcome Alex,</h2>
+      <div className="flex flex-col items-center mb-8 bg-[#0A1B78] text-white p-8 rounded-xl">
+        <h2 className="text-2xl font-bold mb-4">Welcome {user.name.split(" ")[0]},</h2>
         <div className="flex flex-col items-center gap-4">
-          <UserAvatar 
-            src="/lovable-uploads/217d954d-4578-46cc-a270-d5c3d16f39fa.png" 
-            name={user.name} 
-            size="xl"
-            shape="hexagon"
-          />
+          <div className="h-24 w-24 rounded-full bg-[#FFD700] flex items-center justify-center shadow-md">
+            <span className="text-4xl font-bold text-[#7A4E00]">{user.name.charAt(0)}</span>
+          </div>
           <TierBadge 
             tier={user.tier} 
-            className="px-6 py-2 text-sm rounded-full bg-white"
+            className="px-6 py-2 text-sm rounded-full bg-white text-[#0A1B78]"
           />
         </div>
       </div>
