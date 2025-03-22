@@ -30,6 +30,11 @@ const Index = () => {
     navigate(`/wallet?tab=${tab}`);
   };
 
+  // Handle navigation to referral page
+  const navigateToReferral = () => {
+    navigate('/referral');
+  };
+
   return (
     <div className="space-y-6 pb-10">
       {/* Enhanced Welcome Card with Progress */}
@@ -102,7 +107,10 @@ const Index = () => {
       </section>
 
       {/* Referrals Section - Highlighted with a distinguished design */}
-      <section className="mt-6 rounded-xl overflow-hidden">
+      <section 
+        className="mt-6 rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+        onClick={navigateToReferral}
+      >
         <div className="bg-gradient-to-r from-purple-500 to-indigo-600 px-4 py-3">
           <h2 className="text-lg font-semibold text-white flex items-center">
             <Users size={20} className="mr-2" />
@@ -118,7 +126,7 @@ const Index = () => {
           />
           
           {/* Invite Card */}
-          <div className="mt-4">
+          <div className="mt-4" onClick={(e) => e.stopPropagation()}>
             <InviteEarnCard />
           </div>
           
@@ -127,7 +135,10 @@ const Index = () => {
             <Button 
               variant="link" 
               className="p-0 h-auto flex items-center text-sm ml-auto text-indigo-600 dark:text-indigo-400"
-              onClick={() => navigate('/referral/tracking')}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate('/referral/tracking');
+              }}
             >
               View all referrals <ArrowRight size={16} className="ml-1" />
             </Button>
