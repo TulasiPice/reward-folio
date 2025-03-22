@@ -11,8 +11,8 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleStartEarning = () => {
-    // Navigate to index page instead of showing sign in form
-    navigate('/');
+    // Show sign in form instead of navigating
+    setShowOnboarding(false);
   };
 
   const handleGoogleSignIn = () => {
